@@ -13,7 +13,7 @@ return array(
 	|
 	*/
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost',
+	'url' => 'http://localhost/acc/public',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return array(
 	|
 	*/
 
-	'key' => 'xaSbPUGoMIgb6RhGm0KqHSabG0jVQVjn',
+	'key' => 'CVQTfYcGk4uJGJwgpPUDo5tqhS8RrIAi',
 
 	/*
 	|--------------------------------------------------------------------------
