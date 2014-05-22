@@ -2,8 +2,9 @@
 class AccountController extends BaseController
 {
     /**
-     ************************** Account - Sign In *****************************
+     ********************************* Account *********************************
      */
+    /*============================ Account - Sign In =========================*/
     // Account - Sign In (GET)
     public function getSignIn()
     {
@@ -36,5 +37,13 @@ class AccountController extends BaseController
 
         return Redirect::route('account-sign-in')->with('msg',
                 'There was a problem signing you in!');
+    }
+
+    /*============================ Account - Sign Out ========================*/
+    // Account - Sign Out (POST)
+    public function getSignOut()
+    {
+        Auth::logout();
+        return Redirect::route('account-sign-in');
     }
 }

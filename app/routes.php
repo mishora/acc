@@ -1,14 +1,20 @@
 <?php
-
-
-
 /**
  * ************************* Authenticated group *******************************
  */
 Route::group(array('before' => 'auth'), function() {
+    // Home (GET)
     Route::get ( '/', array(
         'as' => 'home',
         'uses' => 'HomeController@home'
+    ));
+
+    /*=============================   Account   =============================*/
+
+    // Account - Sign Out (GET)
+    Route::get('/account/signout', array(
+        'as' => 'account-sign-out',
+        'uses' => 'AccountController@getSignOut'
     ));
 });
 
@@ -17,6 +23,7 @@ Route::group(array('before' => 'auth'), function() {
  */
 
 Route::group(array('before' => 'guest'), function() {
+    /* CSRF protection */
     Route::group(array('before' => 'csrf'), function() {
         // Account - sign in (POST)
         Route::post('/account/signin', array(
