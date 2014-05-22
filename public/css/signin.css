@@ -2,13 +2,12 @@ html, body{
     height: 100%;
 }
 
-html, body, input, p, div, form, a br{
+html, body, input, p, div, form, a, br{
     margin: 0px;
     padding: 0px;
 }
 
 body {
-	height: 100%;
     background: #aaa linear-gradient(#fff, #fff, #aaa) no-repeat;
 }
 
