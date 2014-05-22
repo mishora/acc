@@ -1,0 +1,73 @@
+html, body{
+    height: 100%;
+}
+
+html, body, input, p, div, form, a br{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+	height: 100%;
+    background: #aaa linear-gradient(#fff, #fff, #aaa) no-repeat;
+}
+
+.content {
+    width: 100%;
+    max-width: 300px;
+    background: linear-gradient(#bbb, #fff, #bbb);
+    padding: 20px;
+    margin: 50px auto 50px auto;
+    border-radius: 9px;
+    box-shadow: 5px 5px 5px #aaa;
+    
+}
+
+.content:HOVER{
+    background: linear-gradient(#fff, #bbb, #fff);
+}
+
+form {
+    width: 100%;
+    max-width: 290px;
+    margin: 5px auto 5px auto;
+    text-align: center;	
+}
+input[type=text], input[type=password]{
+    width: 80%;
+    max-width: 200px;
+    border-radius: 5px;
+    margin: 3px;
+    height: 24px;
+}
+
+input[type=submit] {
+    border-radius: 3px;
+    padding: 3px 8px 3px 8px;
+    margin: 8px 5px 8px 3px;
+    font-style: italic;
+    font-weight: bold;
+    color: #333;
+    background: linear-gradient(#aaa, #fff, #aaa);
+}
+
+input[type=submit]:HOVER {
+    background: linear-gradient(#fff, #999, #fff);
+    color: #fff;
+}
+
+a {
+    display: block;
+    width: 100%;
+    max-width: 130px;
+    margin: 0px auto 0px auto;
+    text-align: center;
+    color: #666;
+}
+
+.errors {
+    font-size: 14px;
+    font-style: italic;
+    color: #cc3333;
+    font-weight: bold;
+}

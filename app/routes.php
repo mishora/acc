@@ -1,17 +1,33 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
-|
-*/
 
-Route::get('/', function()
-{
-	return View::make('hello');
+
+/**
+ * ************************* Authenticated group *******************************
+ */
+Route::group(array('before' => 'auth'), function() {
+    Route::get ( '/', array(
+        'as' => 'home',
+        'uses' => 'HomeController@home'
+    ));
+});
+
+/**
+ * ************************ Unauthenticated group ******************************
+ */
+
+Route::group(array('before' => 'guest'), function() {
+    Route::group(array('before' => 'csrf'), function() {
+        // Account - sign in (POST)
+        Route::post('/account/signin', array(
+            'as' => 'account-sign-in-post',
+            'uses' => 'AccountController@postSignIn'
+        ));
+    });
+
+    // Account - sign in (GET)
+    Route::get('/account/signin', array(
+        'as' => 'account-sign-in',
+        'uses' => 'AccountController@getSignIn'
+    ));
 });
