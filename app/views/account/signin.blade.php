@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ URL::asset('css/signin.css') }}">
 </head>
 <body>
-    <div class="content">
+    <div class="content gradienr">
         <form action="{{ URL::route('account-sign-in-post') }}" method="post">
             @if(Session::has('msg'))
                 <span class="errors">{{ Session::get('msg') }}</span>
