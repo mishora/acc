@@ -30,8 +30,9 @@ form {
     width: 100%;
     max-width: 290px;
     margin: 5px auto 5px auto;
-    text-align: center;	
+    text-align: center;
 }
+
 input[type=text], input[type=password]{
     width: 80%;
     max-width: 200px;
@@ -41,13 +42,14 @@ input[type=text], input[type=password]{
 }
 
 input[type=submit] {
-    border-radius: 3px;
+    border-radius: 5px;
     padding: 3px 8px 3px 8px;
     margin: 8px 5px 8px 3px;
     font-style: italic;
     font-weight: bold;
     color: #333;
     background: linear-gradient(#aaa, #fff, #aaa);
+    min-width: 80px;
 }
 
 input[type=submit]:HOVER {

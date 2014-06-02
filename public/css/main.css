@@ -11,23 +11,68 @@ html, body, input, p, div, form, a, br, ul, li{
 }
 
 body {
-    background: #fff linear-gradient(#aaa, #aaa, #fff) no-repeat;
+    background: #fff linear-gradient(#ddd, #ddd, #fff) no-repeat;
+}
+
+input, textarea {
+    border-style: solid;
+    border-top-width: 2px;
+    border-left-width: 2px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-color: #999;
+}
+
+input:focus , textarea:focus {
+    outline:none;
+    border-color:rgba(79,114,152, 0.5);
+    background: #fcffff;
 }
 
 .head{
 /*************************/
     background: rgb(225,226,233);
     background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UxZTJlOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIwJSIgc3RvcC1jb2xvcj0iIzVkNWU3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iI2VmZWZmMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iI2VmZWZmMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1ZDVlN2QiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjVmNWY3IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
-    background: -moz-linear-gradient(top, rgba(225,226,233,1) 0%, rgba(93,94,125,1) 20%, rgba(239,239,243,1) 28%, rgba(239,239,243,1) 28%, rgba(93,94,125,1) 100%, rgba(245,245,247,1) 100%);
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(225,226,233,1)), color-stop(20%,rgba(93,94,125,1)), color-stop(28%,rgba(239,239,243,1)), color-stop(28%,rgba(239,239,243,1)), color-stop(100%,rgba(93,94,125,1)), color-stop(100%,rgba(245,245,247,1)));
-    background: -webkit-linear-gradient(top, rgba(225,226,233,1) 0%,rgba(93,94,125,1) 20%,rgba(239,239,243,1) 28%,rgba(239,239,243,1) 28%,rgba(93,94,125,1) 100%,rgba(245,245,247,1) 100%);
-    background: -o-linear-gradient(top, rgba(225,226,233,1) 0%,rgba(93,94,125,1) 20%,rgba(239,239,243,1) 28%,rgba(239,239,243,1) 28%,rgba(93,94,125,1) 100%,rgba(245,245,247,1) 100%);
-    background: -ms-linear-gradient(top, rgba(225,226,233,1) 0%,rgba(93,94,125,1) 20%,rgba(239,239,243,1) 28%,rgba(239,239,243,1) 28%,rgba(93,94,125,1) 100%,rgba(245,245,247,1) 100%);
-    background: linear-gradient(to bottom, rgba(225,226,233,1) 0%,rgba(93,94,125,1) 20%,rgba(239,239,243,1) 28%,rgba(239,239,243,1) 28%,rgba(93,94,125,1) 100%,rgba(245,245,247,1) 100%);
+    background: -moz-linear-gradient(top,   rgba(225,226,233,1) 0%,
+                                            rgba(79,114,152,1) 20%,
+                                            rgba(239,239,243,1) 28%,
+                                            rgba(79,114,152,1) 100%
+                                        );
+
+    background: -webkit-gradient(linear, left top, left bottom,
+                                            color-stop(0%,rgba(225,226,233,1)),
+                                            color-stop(20%,rgba(79,114,152,1)),
+                                            color-stop(28%,rgba(239,239,243,1)),
+                                            color-stop(100%,rgba(79,114,152,1))
+                                        );
+
+    background: -webkit-linear-gradient(top,    rgba(225,226,233,1) 0%,
+                                                rgba(79,114,152,1) 20%,
+                                                rgba(239,239,243,1) 28%,
+                                                rgba(79,114,152,1) 100%
+                                            );
+
+    background: -o-linear-gradient(top, rgba(225,226,233,1) 0%,
+                                        rgba(79,114,152,1) 20%,
+                                        rgba(239,239,243,1) 28%,
+                                        rgba(79,114,152,1) 100%
+                                    );
+
+    background: -ms-linear-gradient(top,    rgba(225,226,233,1) 0%,
+                                            rgba(79,114,152,1) 20%,
+                                            rgba(239,239,243,1) 28%,
+                                            rgba(79,114,152,1) 100%
+                                        );
+
+    background: linear-gradient(to bottom,  rgba(225,226,233,1) 0%,
+                                            rgba(79,114,152,1) 20%,
+                                            rgba(239,239,243,1) 28%,
+                                            rgba(79,114,152,1) 100%
+                                        );
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1e2e9', endColorstr='#f5f5f7',GradientType=0 );
-/*************************/
+/*-------------------------------------*/
     height: 65px;
-    box-shadow: 0px 5px 5px #aaa;
+    box-shadow: 0px 3px 5px #666;
     position: relative;
 }
 
@@ -38,7 +83,7 @@ body {
     border-left: 2px solid #666;
     border-right: 2px solid #666;
     height: 100%;
-    background: #B5B7C6 linear-gradient(#fff, #fff, #B5B7C6) no-repeat;
+    background: #fff linear-gradient(#fff, #fff, rgba(79,114,152, 0.5)) no-repeat;
     box-shadow: 3px 3px 3px #999;
 }
 
@@ -67,6 +112,10 @@ body {
     border-right: 1px solid #999;
 }
 
+.first_button {
+    border-left: 1px solid #999;
+}
+
 .nav ul li a {
     display: inline-block;
     width: 150px;
@@ -76,9 +125,233 @@ body {
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
+    text-decoration: none;
+    height: 20px;
 }
 
 .nav ul li a:HOVER {
     color: #336699;
     text-shadow: 2px 2px 2px #eee;
+    text-decoration: underline;
 }
+
+.topmenu li ul {
+    display:none;/*hide the dropdown*/
+    position:absolute;/*position it absolutely..*/
+    left:0px;/*...align the left edge with the left edge of the parent li...*/
+    top:21px;/*...and 32px down from the top - 30px height + 2px for the border*/
+}
+
+.topmenu li{
+    position: relative;
+}
+
+.topmenu li ul li{
+    display: block;
+    border: none;
+    padding: 1px;
+}
+
+.topmenu li:HOVER ul {
+	display: block;
+	border-radius: 6px;
+	width: 150px;
+}
+
+.topmenu li ul li a{
+    display: block;
+    text-align: left;
+    background: #eee;
+    border-radius: 13px;
+}
+/*******************************   Horizontal line  ***************************/
+hr.fancy-line { 
+    border: 0; 
+    height: 5px;
+    width: 80%;
+    margin: 35px auto 35px auto;
+}
+hr.fancy-line{
+    background: radial-gradient(ellipse at center,  rgba(79,114,152, 0.8) 0%,
+                                                    rgba(239,239,243,0) 75%);
+}
+
+/********************************   Success MSGs  *****************************/
+
+#dialog-box {
+	color: #393;
+    display: none;
+    position: absolute;
+    width: 300px;
+    /*min-height: 180px;*/
+    top: 27%;
+    left:50%;
+    margin-left: -165px;
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    background: #fff;
+    padding: 15px;
+    z-index: 11;
+    background: #fff linear-gradient(to bottom,  rgba(79,114,152,0.3) 0%,
+                                            rgba(239,239,243,1) 50%,
+                                            rgba(79,114,152,0.8) 100%
+                                );
+}
+#dialog-box-msg{
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+#dialog-box-cancel{
+    text-align: center;
+}
+#overlay{
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: rgba(0,0,0,0.6);
+    z-index: 10;
+    position: fixed;
+}
+
+/*******************************   Nomenclatures   ****************************/
+.nomenclatures-form {
+    width: 80%;
+    min-width: 600px;
+    max-width: 700px;
+    margin: 15px auto 15px auto;
+    text-align: center;
+}
+.nomenclatures-fieldset {
+    display: inline;
+    padding: 20px;
+    color: #336699;
+    border: 1px solid rgba(79,114,152, 0.7);
+    text-align: left;
+    font-weight: bold;
+    font-style: italic;
+    background: linear-gradient(#fff, #ddd, #fff);
+    width: 60%;
+    box-shadow: 3px 3px 6px #aaa;
+    border-radius: 15px;
+    font-size: 18px;
+}
+
+.nomenclatures-table {
+
+}
+
+input[type=text], textarea {
+    width: 300px;
+    border-radius: 3px;
+    padding: 3px;
+}
+
+input[type=submit] {
+    border-radius: 5px;
+    padding: 3px 8px 3px 8px;
+    font-style: italic;
+    font-weight: bold;
+    color: #333;
+    background: linear-gradient(#aaa, #fff, #aaa);
+    min-width: 80px;
+}
+
+input[type=submit]:HOVER {
+    background: linear-gradient(#fff, #999, #fff);
+    color: #fff;
+}
+
+.td-align-right {
+    text-align:right;
+}
+
+h1{
+    width: 100%;
+    margin: 1px auto 15px auto;
+    text-align: center;
+    color: #336699;
+    text-shadow: 2px 2px 5px #777;
+    font-size: 28px;
+}
+
+.errors {
+    font-size: 14px;
+    font-style: italic;
+    color: #cc3333;
+    font-weight: bold;
+}
+
+.nomenclatures-div-list {
+    text-align: center;
+}
+
+.nomenclatures-table-list {
+    min-width: 600px;
+    margin: 5px auto 5px auto;
+    border: 1px solid #ddd;
+    box-shadow: 3px 3px 8px #666;
+    border-radius: 5px;
+    background: rgba(79, 114, 152, 0.6);
+    cursor: default;
+}
+
+.nomenclatures-table-list tr {
+    background: #fffffe;
+}
+
+.nomenclatures-table-list td {
+    border-bottom: 1px solid #ccc;
+    color: #666;
+    font-weight: bold;
+}
+
+.nomenclatures-table-list th {
+    background: #336699;
+    color: #fff;
+    height: 18px;
+    font-size: 16px;
+}
+
+.nomenclatures-table-list .desc {
+    text-align: left;
+    padding-left: 10px;
+    font-style: italic;
+    font-weight: normal;
+}
+
+.nomenclatures-table-list td a {
+    display: block;
+    color: #336699;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.nomenclatures-table-list tr:hover a, .nomenclatures-table-list tr:hover td{
+    /*background: rgb(225,226,233); */
+    background: #6699CC;
+    color: #fff;
+    font-weight: bold;
+}
+
+.nomenclatures-table-list tr:hover .desc{
+    font-weight: normal;
+}
+
+.back {
+    text-align: right;
+    padding-right: 8px;
+    
+}
+
+.back a {
+    color: #336699;
+}
+.back a:hover {
+    color: #113366;
+}
+
