@@ -14,7 +14,9 @@ class CreateCatsTable extends Migration
         Schema::create('cats', function(Blueprint $table) {
             $table->increments( 'id' );
             $table->string('name', 20);
+            $table->text('desc');
             $table->integer('access');
+            $table->timestamps();
         });
     }
 

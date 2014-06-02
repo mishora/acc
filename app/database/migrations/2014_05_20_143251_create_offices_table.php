@@ -12,8 +12,10 @@ class CreateOfficesTable extends Migration
     public function up()
     {
         Schema::create('offices', function(Blueprint $table) {
-            $table->increments( 'id' );
+            $table->increments('id');
             $table->string('name', 20);
+            $table->text('desc');
+            $table->timestamps();
         });
     }
 
