@@ -2,5 +2,6 @@
 
 @section('content')
 
-@stop
+    Categories
 
+@endsection
