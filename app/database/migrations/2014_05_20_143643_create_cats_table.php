@@ -13,6 +13,7 @@ class CreateCatsTable extends Migration
     {
         Schema::create('cats', function(Blueprint $table) {
             $table->increments( 'id' );
+            $table->integer('type');
             $table->string('name', 20);
             $table->text('desc');
             $table->integer('access');
