@@ -1,40 +1,26 @@
 function $(id) {
 	return document.getElementById(id);
 }
-/**
- * @param{string} target
- * @param{string} msg
- * @param{boolean} has_overlay
- * @param{string=} msg_color
- */
-function dialog_box_show(target, msg, has_overlay, msg_color) {
-
-	if (msg_color) {
-		$(target).style.color = msg_color;
-	}
-	if ($(target)) {
-		$(target).style.display = 'block';
-		$('dialog-box-msg').innerHTML = msg;
-		if (has_overlay) {
-			$('overlay').style.display = 'block';
-		} else {
-			console.log('global.js: Unable to get element overlay!');
-		}
-	}
-}
 
 /**
  * @param{string} target
- * @param{boolean} has_overlay
+ * @param{*} val
  */
-function dialog_box_hide(target, has_overlay)
+function set_selected_option(target, val)
 {
-	if ($(target)) {
-		$(target).style.display = 'none';
-		if (has_overlay) {
-			$('overlay').style.display = 'none';
-		} else {
-			console.log('global.js: Unable to get element overlay!');
-		}
+	var i;
+	var elem = document.querySelector('select[name=' + target + ']');
+	var options = elem.querySelectorAll('option');
+	
+	if (!elem) {
+		return false;
 	}
+	for (i = 0; i < options.length; i++) {
+		if (options[i].value == val) {
+			options[i].selected = true;
+			elem.style.color = "#333";
+			break;
+		}		
+	}
+	
 }

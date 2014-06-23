@@ -17,6 +17,11 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'account-sign-out',
         'uses' => 'AccountController@getSignOut'
     ));
+    // Account - Profile (GET)
+    Route::get('/account/profile', array(
+        'as' => 'account-profile',
+        ''
+    ));
 
     /*==========================   Nomenclatures   ===========================*/
     /***   ---Offices---   ***/
@@ -30,11 +35,12 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'nomenclatures-offices-edit',
         'uses' => 'NomenclaturesController@getOfficesEdit'
     ));
-    // Nomenclatures - Edit Office {GET}
+    // Nomenclatures - Delete Office {GET}
     Route::get('nomenclatures/offices/delete/{id}', array(
         'as' => 'nomenclatures-offices-delete',
         'uses' => 'NomenclaturesController@getOfficesDelete'
     ));
+
     /*------------------------------------------------------------------------*/
     /***   ---Categories---   ***/
     // Nomenclatures - Categories (GET)
@@ -42,11 +48,36 @@ Route::group(array('before' => 'auth'), function() {
         'as' => 'nomenclatures-categories',
         'uses' => 'NomenclaturesController@getCategories'
     ));
+    // Nomenclatures - Edit Cat {GET}
+    Route::get('nomenclatures/categories/edit/{id}', array(
+    'as' => 'nomenclatures-categories-edit',
+    'uses' => 'NomenclaturesController@getCategoriesEdit'
+        ));
+    // Nomenclatures - Delete Cat {GET}
+    Route::get('nomenclatures/categories/delete/{id}', array(
+        'as' => 'nomenclatures-categories-delete',
+        'uses' => 'NomenclaturesController@getCategoriesDelete'
+    ));
+
+    /*------------------------------------------------------------------------*/
+    /***   ---Operators---   ***/
     // Nomenclatures - Operators (GET)
     Route::get('/nomenclatures/operators', array(
         'as' => 'nomenclatures-operators',
         'uses' => 'NomenclaturesController@getOperators'
     ));
+    // Nomenclatures - Edit Operator {GET}
+    Route::get('nomenclatures/operators/edit/{id}', array(
+        'as' => 'nomenclatures-operators-edit',
+        'uses' => 'NomenclaturesController@getOperatorsEdit'
+    ));
+    // Nomenclatures - Delete Operator {GET}
+    Route::get('nomenclatures/operators/delete/{id}', array(
+        'as' => 'nomenclatures-operators-delete',
+        'uses' => 'NomenclaturesController@getOperatorsDelete'
+    ));
+
+    /*============================   CSRF   ==================================*/
 
     /*** CSRF protection ***/
     Route::group(array('before' => 'csrf'), function(){
@@ -55,10 +86,30 @@ Route::group(array('before' => 'auth'), function() {
             'as' => 'nomenclatures-offices-post',
             'uses' => 'NomenclaturesController@postOffices'
         ));
-        // Nomenclatures - Edit Offices (POST)
+        // Nomenclatures - Offices Edit (POST)
         Route::post('/nomenclatures/offices/edit/{id}', array(
             'as' => 'nomenclatures-offices-edit-post',
             'uses' => 'NomenclaturesController@postOfficesEdit'
+        ));
+        // Nomenclatures - Categories (POST)
+        Route::post('/nomenclatures/categories', array(
+            'as' => 'nomenclatures-categories-post',
+            'uses' => 'NomenclaturesController@postCategories'
+        ));
+        // Nomenclatures - Categories Edit (POST)
+        Route::post('/nomenclatures/categories/edit/{id}', array(
+            'as' => 'nomenclatures-categories-edit-post',
+            'uses' => 'NomenclaturesController@postCategoriesEdit'
+        ));
+        // Nomenclatures - Operators (POST)
+        Route::post('/nomenclatures/operators', array(
+            'as' => 'nomenclatures-operators-post',
+            'uses' => 'NomenclaturesController@postOperators'
+        ));
+        // Nomenclatures - Categories Edit (POST)
+        Route::post('/nomenclatures/operators/edit/{id}', array(
+            'as' => 'nomenclatures-operators-edit-post',
+            'uses' => 'NomenclaturesController@postOperatorsEdit'
         ));
     });
 

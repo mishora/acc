@@ -1,5 +1,9 @@
 <?php
 
+define('INCOMES', 0);
+define('EXPENSES', 1);
+define('OTHER', 2);
+
 return array(
 
 	/*

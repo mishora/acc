@@ -18,7 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('email', 60);
             $table->string('name', 20);
             $table->string('last_name', 20);
-            $table->integer('pd' );
+            $table->integer('access' );
+            $table->boolean('ban');
             $table->string('token', 100);
             $table->timestamps();
         });

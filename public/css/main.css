@@ -3,7 +3,7 @@ html, body{
     height: 100%;
 }
 
-html, body, input, p, div, form, a, br, ul, li{
+html, body, input, p, div, form, a, br, ul, lion, img{
     margin: 0px;
     padding: 0px;
     font-family: 'Open Sans', sans-serif;
@@ -12,9 +12,10 @@ html, body, input, p, div, form, a, br, ul, li{
 
 body {
     background: #fff linear-gradient(#ddd, #ddd, #fff) no-repeat;
+    padding-bottom:60px;
 }
 
-input, textarea {
+input, textarea, select {
     border-style: solid;
     border-top-width: 2px;
     border-left-width: 2px;
@@ -23,10 +24,60 @@ input, textarea {
     border-color: #999;
 }
 
-input:focus , textarea:focus {
+input:focus , textarea:focus, select:focus {
     outline:none;
     border-color:rgba(79,114,152, 0.5);
     background: #fcffff;
+}
+
+.footer{
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height: 35px;
+       background: rgb(225,226,233);
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2UxZTJlOSIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjIwJSIgc3RvcC1jb2xvcj0iIzVkNWU3ZCIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iI2VmZWZmMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjI4JSIgc3RvcC1jb2xvcj0iI2VmZWZmMyIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiM1ZDVlN2QiIHN0b3Atb3BhY2l0eT0iMSIvPgogICAgPHN0b3Agb2Zmc2V0PSIxMDAlIiBzdG9wLWNvbG9yPSIjZjVmNWY3IiBzdG9wLW9wYWNpdHk9IjEiLz4KICA8L2xpbmVhckdyYWRpZW50PgogIDxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjZ3JhZC11Y2dnLWdlbmVyYXRlZCkiIC8+Cjwvc3ZnPg==);
+    background: -moz-linear-gradient(top,   rgba(225,226,233,1) 0%,
+                                            rgba(79,114,152,1) 20%,
+                                            rgba(239,239,243,1) 28%,
+                                            rgba(79,114,152,1) 100%
+                                        );
+
+    background: -webkit-gradient(linear, left top, left bottom,
+                                            color-stop(0%,rgba(225,226,233,1)),
+                                            color-stop(20%,rgba(79,114,152,1)),
+                                            color-stop(28%,rgba(239,239,243,1)),
+                                            color-stop(100%,rgba(79,114,152,1))
+                                        );
+
+    background: -webkit-linear-gradient(top,    rgba(225,226,233,1) 0%,
+                                                rgba(79,114,152,1) 20%,
+                                                rgba(239,239,243,1) 28%,
+                                                rgba(79,114,152,1) 100%
+                                            );
+
+    background: -o-linear-gradient(top, rgba(225,226,233,1) 0%,
+                                        rgba(79,114,152,1) 20%,
+                                        rgba(239,239,243,1) 28%,
+                                        rgba(79,114,152,1) 100%
+                                    );
+
+    background: -ms-linear-gradient(top,    rgba(225,226,233,1) 0%,
+                                            rgba(79,114,152,1) 20%,
+                                            rgba(239,239,243,1) 28%,
+                                            rgba(79,114,152,1) 100%
+                                        );
+
+    background: radial-gradient( rgba(225,226,233,0.5) 0%,
+                                            rgba(79,114,152,0.1) 20%,
+                                            rgba(239,239,243,0.5) 28%,
+                                            rgba(79,114,152,0.1) 100%
+                                        );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e1e2e9', endColorstr='#f5f5f7',GradientType=0 );
+}
+
+.push {
+    height: 4em;
 }
 
 .head{
@@ -74,6 +125,7 @@ input:focus , textarea:focus {
     height: 65px;
     box-shadow: 0px 3px 5px #666;
     position: relative;
+    z-index: 20;
 }
 
 .container {
@@ -85,6 +137,11 @@ input:focus , textarea:focus {
     height: 100%;
     background: #fff linear-gradient(#fff, #fff, rgba(79,114,152, 0.5)) no-repeat;
     box-shadow: 3px 3px 3px #999;
+    position: relative;
+    min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -35px;
 }
 
 .content {
@@ -94,7 +151,7 @@ input:focus , textarea:focus {
 .nav {
     position: absolute;
     bottom: 0px;
-    width:900px;
+    min-width:900px;
     right: 0;
     left: 0;
     margin: auto;
@@ -109,11 +166,11 @@ input:focus , textarea:focus {
     list-style-position: inside;
     display: inline;
     text-align: center;
-    border-right: 1px solid #999;
+    border-right: 1px solid #ccc;
 }
 
 .first_button {
-    border-left: 1px solid #999;
+    border-left: 1px solid #ccc;
 }
 
 .nav ul li a {
@@ -121,7 +178,7 @@ input:focus , textarea:focus {
     width: 150px;
     text-align: center;
     color: #fff;
-    padding: 3px 3px 3px 3px;/*B3B2B7*/
+    padding: 3px 3px 0px 3px;/*B3B2B7*/
     font-weight: bold;
     font-size: 14px;
     text-transform: uppercase;
@@ -131,7 +188,7 @@ input:focus , textarea:focus {
 
 .nav ul li a:HOVER {
     color: #336699;
-    text-shadow: 2px 2px 2px #eee;
+    text-shadow: 1px 1px 3px #ccc;
     text-decoration: underline;
 }
 
@@ -139,7 +196,8 @@ input:focus , textarea:focus {
     display:none;/*hide the dropdown*/
     position:absolute;/*position it absolutely..*/
     left:0px;/*...align the left edge with the left edge of the parent li...*/
-    top:21px;/*...and 32px down from the top - 30px height + 2px for the border*/
+    top:18px;/*...and 32px down from the top - 30px height + 2px for the border*/
+    font-size: 12px;
 }
 
 .topmenu li{
@@ -149,21 +207,35 @@ input:focus , textarea:focus {
 .topmenu li ul li{
     display: block;
     border: none;
-    padding: 1px;
 }
 
 .topmenu li:HOVER ul {
-	display: block;
-	border-radius: 6px;
-	width: 150px;
+    margin-top: 2px;
+    display: block;
+    font-size: 14px;
 }
 
 .topmenu li ul li a{
+	padding-left: 15px;
+	font-style: italic;
+    width:170px;
+    margin-left: -2px;
+    color: rgba(79, 114, 152, 1);
     display: block;
+    font-size: 14px;
     text-align: left;
-    background: #eee;
-    border-radius: 13px;
+    background: linear-gradient(to bottom, rgba(79,114,152,0.9) 0%,
+                                           rgba(239,239,243,1) 100%);
+    font-size: 12px;
 }
+.topmenu li ul li a:hover{
+    color: #fff;
+    text-indent: 15px;
+    background: linear-gradient(to bottom, rgba(79,114,152,1) 0%,
+                                           rgba(239,239,243,1) 100%);
+}
+
+
 /*******************************   Horizontal line  ***************************/
 hr.fancy-line { 
     border: 0; 
@@ -176,36 +248,6 @@ hr.fancy-line{
                                                     rgba(239,239,243,0) 75%);
 }
 
-/********************************   Success MSGs  *****************************/
-
-#dialog-box {
-	color: #393;
-    display: none;
-    position: absolute;
-    width: 300px;
-    /*min-height: 180px;*/
-    top: 27%;
-    left:50%;
-    margin-left: -165px;
-    border: 2px solid #ccc;
-    border-radius: 15px;
-    background: #fff;
-    padding: 15px;
-    z-index: 11;
-    background: #fff linear-gradient(to bottom,  rgba(79,114,152,0.3) 0%,
-                                            rgba(239,239,243,1) 50%,
-                                            rgba(79,114,152,0.8) 100%
-                                );
-}
-#dialog-box-msg{
-    padding: 15px 0px 15px 0px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 18px;
-}
-#dialog-box-cancel{
-    text-align: center;
-}
 #overlay{
     display: none;
     width: 100%;
@@ -242,14 +284,16 @@ hr.fancy-line{
 }
 
 .nomenclatures-table {
-
+    margin: auto;
 }
 
-input[type=text], textarea {
+input[type=text], input[type=password], input[type=email], textarea, select {
     width: 300px;
     border-radius: 3px;
     padding: 3px;
 }
+
+
 
 input[type=submit] {
     border-radius: 5px;
@@ -264,6 +308,15 @@ input[type=submit] {
 input[type=submit]:HOVER {
     background: linear-gradient(#fff, #999, #fff);
     color: #fff;
+}
+
+select {
+    color: #aaa;
+    width:98.3%;
+}
+
+option:not(:checked) {
+    color: #333;
 }
 
 .td-align-right {
@@ -301,20 +354,23 @@ h1{
 }
 
 .nomenclatures-table-list tr {
-    background: #fffffe;
+    background: linear-gradient(#ccc, #fff, #ccc);
 }
 
 .nomenclatures-table-list td {
     border-bottom: 1px solid #ccc;
     color: #666;
     font-weight: bold;
+    padding-left: 10px;
 }
 
 .nomenclatures-table-list th {
     background: #336699;
     color: #fff;
     height: 18px;
-    font-size: 16px;
+    font-size: 14px;
+    padding: 2px 5px 2px 5px;
+    text-align: center;
 }
 
 .nomenclatures-table-list .desc {
@@ -331,10 +387,9 @@ h1{
     font-style: italic;
 }
 
-.nomenclatures-table-list tr:hover a, .nomenclatures-table-list tr:hover td{
-    /*background: rgb(225,226,233); */
-    background: #6699CC;
-    color: #fff;
+.nomenclatures-table-list tr:hover .nomenclatures-table-list tr:hover td {
+    background: linear-gradient(#6699CC, #ddd, #6699CC);
+    color: #333;
     font-weight: bold;
 }
 
@@ -353,5 +408,48 @@ h1{
 }
 .back a:hover {
     color: #113366;
+}
+
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+
+/**********************************   Icons   *********************************/
+
+.img_edit {
+    margin-top: 3px;
+    width:20px;
+    height:20px;
+    background: url('../imgs/icons/edit.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+.img_edit:HOVER{
+    width:20px;
+    height:20px;
+    background: url('../imgs/icons/edit_active.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+.img_delete {
+    margin-top: 3px;
+    width:20px;
+    height:20px;
+    background: url('../imgs/icons/delete.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+.img_delete:HOVER {
+    width:20px;
+    height:20px;
+    background: url('../imgs/icons/delete_active.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
 }
 

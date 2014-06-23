@@ -11,6 +11,12 @@ body {
     background: #aaa linear-gradient(#fff, #fff, #aaa) no-repeat;
 }
 
+input:focus , textarea:focus, select:focus {
+    outline:none;
+    border-color:rgba(79,114,152, 0.5);
+    background: #fcffff;
+}
+
 .content {
     width: 100%;
     max-width: 300px;
