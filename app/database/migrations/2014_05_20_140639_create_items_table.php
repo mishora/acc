@@ -19,6 +19,8 @@ class CreateItemsTable extends Migration
             $table->integer('cat');
             $table->string('name', 60);
             $table->string('desc', 255);
+            $table->float('quantity');
+            $table->float('price');
             $table->float('amount');
             $table->integer('issue_date');
             $table->boolean('issue_check');
