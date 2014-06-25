@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DANS ENERGY - Sign In</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ URL::asset('css/signin.css') }}">
 </head>
 <body>
-    <div class="content gradienr">
+    <div class="content gradient">
         <form action="{{ URL::route('account-sign-in-post') }}" method="post">
             @if(Session::has('msg'))
                 <span class="errors">{{ Session::get('msg') }}</span>

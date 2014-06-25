@@ -77,10 +77,18 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'NomenclaturesController@getOperatorsDelete'
     ));
 
+    /*=============================   Profile   ==============================*/
+    // Profile - (GET)
+    Route::get('/profile', array(
+        'as' => 'profile',
+        'uses' => 'AccountController@getProfile'
+    ));
+
     /*============================   CSRF   ==================================*/
 
     /*** CSRF protection ***/
     Route::group(array('before' => 'csrf'), function(){
+        /*------------------------   Nomenclatures   -------------------------*/
         // Nomenclatures - Offices (POST)
         Route::post('/nomenclatures/offices', array(
             'as' => 'nomenclatures-offices-post',
@@ -111,9 +119,13 @@ Route::group(array('before' => 'auth'), function() {
             'as' => 'nomenclatures-operators-edit-post',
             'uses' => 'NomenclaturesController@postOperatorsEdit'
         ));
+        /*---------------------------   Profile   ----------------------------*/
+        Route::post('/profile_edit', array(
+            'as' => 'profile-edit',
+            'uses' => 'AccountController@postProfile'
+        ));
     });
 
-    /*=============================   Reports   ==============================*/
 });
 
 /**

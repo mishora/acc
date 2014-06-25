@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>DANS ENERGY - Sign In</title>
+    <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ URL::asset('css/alertify.core.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/alertify.bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
@@ -31,7 +31,14 @@
             alertify.alert("{{ Session::get('msg-fail') }}");
         </script>
     @endif
-    <div class="head gradienr">@include('layouts.navigation')</div>
+    <div class="head gradient">
+        <div class="hello">
+            @if(Auth::check())
+                Operator: {{ Auth::user()->name }} {{ Auth::user()->last_name }}
+            @endif
+        </div>
+        @include('layouts.navigation')
+    </div>
     <div class="container">
         <div class="content">
             @yield('content')

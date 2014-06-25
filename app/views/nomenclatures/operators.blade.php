@@ -8,13 +8,13 @@
         method="POST" autocomplete="off"
     >
         <fieldset class="nomenclatures-fieldset">
-        <legend>
-            @if(isset($operator))
-                Edit Operator
-            @else
-                Add New Operator
-            @endif
-        </legend>
+            <legend>
+                @if(isset($operator))
+                    Edit Operator
+                @else
+                    Add New Operator
+                @endif
+            </legend>
             <table class="nomenclatures-table" align="center">
                 @if(isset($operator))
                 <tr>

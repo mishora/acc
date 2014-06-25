@@ -9,6 +9,8 @@ class NomenclaturesController extends BaseController
     {
         $offices =  Office::all()->toArray();
         return View::make('nomenclatures.offices', array(
+            'title' => 'DANS ENERGY - Offices',
+            'page' => 'nomenclatures',
             'offices' => $offices
         ));
     }
@@ -17,6 +19,8 @@ class NomenclaturesController extends BaseController
     {
         $office = Office::where('id', $id)->take(1);
         return View::make('nomenclatures.offices', array(
+            'title' => 'DANS ENERGY - Edit Offices',
+            'page' => 'nomenclatures',
             'office' => $office->first()
         ));
     }
@@ -89,6 +93,8 @@ class NomenclaturesController extends BaseController
     {
         $cats =  Cat::all()->toArray();
         return View::make('nomenclatures.categories', array(
+            'title' => 'DANS ENERGY - Offices',
+            'page' => 'nomenclatures',
             'cats' => $cats,
         ));
     }
@@ -97,6 +103,8 @@ class NomenclaturesController extends BaseController
     {
         $cat = Cat::where('id', $id)->take(1);
         return View::make('nomenclatures.categories', array(
+            'title' => 'DANS ENERGY - Edit Offices',
+            'page' => 'nomenclatures',
             'cat' => $cat->first()
         ));
     }
@@ -185,6 +193,8 @@ class NomenclaturesController extends BaseController
     {
         $operators =  User::all()->toArray();
         return View::make('nomenclatures.operators', array(
+            'title' => 'DANS ENERGY - Offices',
+            'page' => 'nomenclatures',
             'operators' => $operators
         ));
     }
@@ -193,6 +203,8 @@ class NomenclaturesController extends BaseController
     {
         $operator = User::where('id', $id)->take(1);
         return View::make('nomenclatures.operators', array(
+            'title' => 'DANS ENERGY - Edit  Offices',
+            'page' => 'nomenclatures',
             'operator' => $operator->first()
         ));
     }
