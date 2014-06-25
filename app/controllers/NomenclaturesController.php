@@ -85,6 +85,11 @@ class NomenclaturesController extends BaseController
                     ->with('msg-fail', 'Unable to update data!');
     }
 
+    public static function getOfficesList()
+    {
+        return Office::all();
+    }
+
     /**
      *****************************   Categories   ******************************
      */
@@ -185,6 +190,10 @@ class NomenclaturesController extends BaseController
         ->with('msg-fail', 'Unable to update data!');
     }
 
+    public static function getCatsList()
+    {
+        return Cat::all();
+    }
     /**
      ******************************   Operators   ******************************
      */

@@ -11,6 +11,13 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'OverviewController@getOverview'
     ));
 
+    /*=============================   Add New   ==============================*/
+    // Add New (GET)
+    Route::get ( '/add', array(
+    'as' => 'add',
+    'uses' => 'AddController@getAdd'
+        ));
+
     /*=============================   Account   ==============================*/
     // Account - Sign Out (GET)
     Route::get('/account/signout', array(
