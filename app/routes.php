@@ -4,11 +4,11 @@
  */
 Route::group(array('before' => 'auth'), function() {
 
-    /*==============================   Home   ================================*/
-    // Home (GET)
+    /*============================   Overview   ==============================*/
+    // Overview (GET)
     Route::get ( '/', array(
-        'as' => 'home',
-        'uses' => 'HomeController@home'
+        'as' => 'overview',
+        'uses' => 'OverviewController@getOverview'
     ));
 
     /*=============================   Account   ==============================*/

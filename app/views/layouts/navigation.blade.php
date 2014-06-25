@@ -1,12 +1,10 @@
 <div class="nav">
     <ul class="topmenu">
-        <li class="first_button{{ $page=='home' ? ' current_page' : ''}}"><a href="{{ URL::route('home') }}">Home</a></li>
-        <li{{ $page=='dashboard' ? ' class="current_page"' : ''}}>
-            <a href="#">Dashboard</a>
-            <ul>
-                <li><a href="#">Add new item</a></li>
-                <li><a href="#">Overview</a></li>
-            </ul>
+        <li class="first_button{{ $page=='overview' ? ' current_page' : ''}}">
+            <a href="{{ URL::route('overview') }}">Overview</a>
+        </li>
+        <li{{ $page=='add' ? ' class="current_page"' : ''}}>
+            <a href="{{ URL::route('add') }}">Add New</a>
         </li>
         <li{{ $page=='nomenclatures' ? ' class="current_page"' : ''}}>
             <a href="{{ URL::route('nomenclatures-offices') }}">Nomenclatures</a>
