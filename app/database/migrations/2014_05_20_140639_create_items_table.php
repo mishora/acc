@@ -17,17 +17,17 @@ class CreateItemsTable extends Migration
             $table->integer('office');
             $table->integer('type');
             $table->integer('cat');
+            $table->integer('access');
             $table->string('name', 60);
             $table->string('desc', 255);
-            $table->float('quantity');
-            $table->float('price');
-            $table->float('amount');
+            $table->double('quantity');
+            $table->double('price');
+            $table->double('amount');
             $table->integer('issue_date');
             $table->boolean('issue_check');
             $table->integer('pay_date');
             $table->integer('status');
-            $table->integer('created');
-            $table->integer('updated');
+            $table->timestamps();
         });
     }
 
