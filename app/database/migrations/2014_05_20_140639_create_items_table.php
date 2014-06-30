@@ -24,7 +24,7 @@ class CreateItemsTable extends Migration
             $table->float('amount');
             $table->integer('issue_date');
             $table->boolean('issue_check');
-            $table->integer('paydate_date');
+            $table->integer('pay_date');
             $table->integer('status');
             $table->integer('created');
             $table->integer('updated');
