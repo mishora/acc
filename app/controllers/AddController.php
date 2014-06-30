@@ -18,7 +18,6 @@ class AddController extends BaseController
             'office' => 'required|numeric|min:1',
             'cat' => 'required|numeric|min:0',
             'name' => 'required',
-            'desc' => 'required',
             'quantity' => 'required|numeric|min:0.00001',
             'price' => 'required|numeric|min:0.00001',
             'amount' => 'required|numeric|min:0.00001',
@@ -39,8 +38,8 @@ class AddController extends BaseController
             $item->quantity = Input::get('quantity');
             $item->price = Input::get('price');
             $item->amount = Input::get('amount');
-            $item->issue_date = Input::get('issue_date');
-            $item->pay_date = Input::get('pay_date');
+            $item->issue_date = strtotime(Input::get('issue_date'));
+            $item->pay_date = strtotime(Input::get('pay_date'));
 
             $item->access = $cat['access'];
             $item->type = $cat['type'];
