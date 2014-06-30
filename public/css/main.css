@@ -509,7 +509,51 @@ hr.fancy-line{
     border: none;
 }
 
+.img_status_ok {
+    margin-top: 3px;
+    width: 20px;
+    height:20px;
+    background: url('../imgs/icons/Ok_ok.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+
+.img_status_ok:hover {
+    margin-top: 3px;
+    width: 20px;
+    height:20px;
+    background: url('../imgs/icons/Ok_active.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+
+.img_status_not {
+    margin-top: 3px;
+    width: 20px;
+    height:20px;
+    background: url('../imgs/icons/Ok.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+
+.img_status_not:HOVER {
+    margin-top: 3px;
+    width: 20px;
+    height:20px;
+    background: url('../imgs/icons/Ok_active.png') no-repeat;
+    background-size: 20px 20px;
+    border: none;
+}
+
+
+/**********************************   End Items   *****************************/
+
 .add_items .datepicker {
     width: 120px;
     text-align: center;
+}
+
+.overview-table td{
+    font-weight: normal;
+    padding: 1px 3px 1px 3px;
 }

@@ -2,7 +2,12 @@ function $$(id){
 	return document.getElementById(id);
 } 
 
-onload = function(e){	
+onload = function(e) {
+	/* Tooltip */
+	$(document).tooltip({
+		track: true
+	});
+	
 	/* Date Pickers */
 	$(".datepicker").datepicker();
 	$(".datepicker").datepicker('option', 'dateFormat', 'dd-M-yy');
