@@ -6,8 +6,8 @@ $cat_list = NomenclaturesController::getCatsList();
 @section('content')
     <h1 class="noms">Add New Item</h1>
     <form class="nomenclatures-form"
-        action=""
-        method="POST"
+        action="{{ URL::action('add-post') }}"
+        method="post"
     >
         <fieldset class="nomenclatures-fieldset">
             <legend>
@@ -17,7 +17,7 @@ $cat_list = NomenclaturesController::getCatsList();
                     Add New Item
                 @endif
             </legend>
-            <table class="nomenclatures-table">
+            <table class="nomenclatures-table add_items" style="width:97%">
                 <tr>
                     <td>
                         <select name="office" onchange="if(this.value >= 0) {this.style.color = '#333';} else {this.style.color = '#aaa';}">
@@ -26,6 +26,16 @@ $cat_list = NomenclaturesController::getCatsList();
                                 <option value="{{ $offc['id'] }}">{{ $offc['name'] }}</option>
                             @endforeach
                         </select>
+                        <br>
+                        @if($errors->has('office'))
+                            <span class="errors">{{ $errors->first('office') }}</span>
+                        @endif
+                        @if(Input::old('office') > -1)
+                            <script type="text/javascript">
+                                set_selected_option('office', '<?php echo Input::old('office'); ?>');
+                                console.log('<?php echo Input::old('office'); ?>');
+                            </script>
+                        @endif
                     </td>
                 </tr>
                 <tr>
@@ -36,11 +46,127 @@ $cat_list = NomenclaturesController::getCatsList();
                                 <option value="{{ $cat['id'] }}">{{ $cat['name'] }}</option>
                             @endforeach
                         </select>
+                        <br>
+                        @if($errors->has('cat'))
+                            <span class="errors">{{ $errors->first('cat') }}</span>
+                        @endif
+                        @if(Input::old('cat') > -1)
+                            <script type="text/javascript">
+                                set_selected_option('cat', '<?php echo Input::old('cat'); ?>');
+                                console.log('<?php echo Input::old('cat'); ?>');
+                            </script>
+                        @endif
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="name" placeholder="Name">
+                        <input type="text" name="name" placeholder="Name"{{ (Input::old('name')) ? ' value="'.Input::old('name').'"' : ''}}>
+                        <br>
+                        @if($errors->has('name'))
+                            <span class="errors">{{ $errors->first('name') }}</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table cellpadding="0px" cellspacing="0px" style="width: 100%;">
+                            <tr class="input_numbers" style="vertical-align: top;">
+                                <td>
+                                    <p>Quantity</p>
+                                    <input type="number" name="quantity" step="any"{{ (Input::old('quantity')) ? ' value="'.Input::old('quantity').'"' : ''}}>
+                                    <br>
+                                    @if($errors->has('quantity'))
+                                        <span class="errors">{{ $errors->first('quantity') }}</span>
+                                    @endif
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <p>Price (&euro;)</p>
+                                    <input type="number" name="price" step="any"{{ (Input::old('price')) ? ' value="'.Input::old('price').'"' : ''}}>
+                                    <br>
+                                    @if($errors->has('price'))
+                                        <span class="errors">{{ $errors->first('price') }}</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr class="input_numbers">
+                    <td>
+                    <p>Amount (&euro;)</p>
+                        <input style="background: #dfdfdf; width: 60%; text-align: center"
+                                type="number" name="amount"
+                                readonly="readonly" step="any"
+                                value="{{ (Input::old('amount')) ? Input::old('amount') : ''}}"
+                        >
+                        <br>
+                        @if($errors->has('amount'))
+                            <span class="errors">{{ $errors->first('amount') }}</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <textarea rows="5" name="desc" placeholder="Description" style="width: 98%;"><?php
+
+                            if (isset($office) || Input::old('desc')) {
+                                if (Input::old('desc')) {
+                                    echo Input::old('desc');
+                                } else {
+                                    echo $office['desc'];
+                                }
+                            }
+                        ?></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td id="dates">
+                        <table cellpadding="0px" cellspacing="0px" style="width: 100%;">
+                            <tr class="input_numbers" style="vertical-align: top;">
+                                <td>
+                                    <?php
+                                    if (Input::old('issue_date')) {
+                                        echo '<script type="text/javascript">
+                                                    issue_date = "'.Input::old('issue_date').'";
+                                              </script>';
+                                    }
+                                    ?>
+                                    <p>Issue Date: </p>
+                                    <input  type="text" name="issue_date"
+                                            class="datepicker" value="{{ (Input::old('issue_date')) ? Input::old('issue_date') : '' }}"
+                                            placeholder="Click to Select"
+                                    >
+                                    <br>
+                                    @if($errors->has('issue_date'))
+                                        <span class="errors">{{ $errors->first('issue_date') }}</span>
+                                    @endif
+                                </td>
+                                <td style="padding-left: 10px;">
+                                    <?php
+                                    if (Input::old('pay_date')) {
+                                        echo '<script type="text/javascript">
+                                                    pay_date = "'.Input::old('pay_date').'";
+                                              </script>';
+                                    }
+                                    ?>
+                                    <p>Pay Date: </p>
+                                    <input type="text" name="pay_date"
+                                            class="datepicker" value=""
+                                            placeholder="Click to Select"
+                                    >
+                                    <br>
+                                    @if($errors->has('pay_date'))
+                                        <span class="errors">{{ $errors->first('pay_date') }}</span>
+                                    @endif
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="td-align-right" style="padding-top: 20px;">
+                        {{ Form::token() }}
+                        <input type="submit" value="Save" name="save">
                     </td>
                 </tr>
             </table>

@@ -2,14 +2,18 @@
 <html>
 <head>
     <title>{{ $title }}</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
     <link rel="stylesheet" href="{{ URL::asset('css/alertify.core.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/alertify.bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::asset('css/main.css') }}">
     <script type="text/javascript" src="{{ URL::asset('js/alertify.min.js') }}" ></script>
-    <!--
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,600,800,700' rel='stylesheet' type='text/css'>
-    -->
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     <script type="text/javascript" src="{{ URL::asset('js/global.js') }}" ></script>
+    <script type="text/javascript">
+        var issue_date = '';
+        var pay_date = '';
+    </script>
     <!--[if gte IE 9]>
         <style type="text/css">
             .gradient {
@@ -34,7 +38,7 @@
     <div class="head gradient">
         <div class="hello">
             @if(Auth::check())
-                Operator: {{ Auth::user()->name }} {{ Auth::user()->last_name }}
+                <p id="hello">Operator: {{ Auth::user()->name }} {{ Auth::user()->last_name }}</p>
             @endif
         </div>
         @include('layouts.navigation')

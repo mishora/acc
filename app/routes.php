@@ -14,9 +14,9 @@ Route::group(array('before' => 'auth'), function() {
     /*=============================   Add New   ==============================*/
     // Add New (GET)
     Route::get ( '/add', array(
-    'as' => 'add',
-    'uses' => 'AddController@getAdd'
-        ));
+        'as' => 'add',
+        'uses' => 'AddController@getAdd'
+    ));
 
     /*=============================   Account   ==============================*/
     // Account - Sign Out (GET)
@@ -95,6 +95,12 @@ Route::group(array('before' => 'auth'), function() {
 
     /*** CSRF protection ***/
     Route::group(array('before' => 'csrf'), function(){
+        /*---------------------------   Add New   ----------------------------*/
+        // Add New (POST)
+        Route::post( '/add', array(
+            'as' => 'add-post',
+            'uses' => 'AddController@postAdd'
+        ));
         /*------------------------   Nomenclatures   -------------------------*/
         // Nomenclatures - Offices (POST)
         Route::post('/nomenclatures/offices', array(
