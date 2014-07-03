@@ -1,5 +1,5 @@
 <?php
-class AddController extends BaseController
+class ItemsController extends BaseController
 {
     public function getAdd()
     {
@@ -9,8 +9,9 @@ class AddController extends BaseController
         ));
     }
 
-    public function postAdd()
+    public function postItemsAdd($id = null)
     {
+        $redirect_path = 'add';
         $messages = array(
             'min' => 'The :attribute field is required.',
         );
@@ -29,8 +30,13 @@ class AddController extends BaseController
         if ($validator->passes()) {
 
             $cat = Cat::find(Input::get('cat'));
-            $item = null;
-            $item = new Item();
+            if (!$id) {
+                $item = new Item();
+            } else {
+                $redirect_path = 'overview';
+                $item = Item::findOrFail($id);
+            }
+
             $item->office = Input::get('office');
             $item->cat = Input::get('cat');
             $item->name = Input::get('name');
@@ -44,12 +50,38 @@ class AddController extends BaseController
             $item->access = $cat['access'];
             $item->type = $cat['type'];
             if ($item->save()) {
-                return Redirect::route('add')
+                return Redirect::route($redirect_path)
                         ->with('msg-success', 'Data saved successfully!');
             }
         } else {
-            return Redirect::route('add')->withInput()->withErrors($validator);
+            return Redirect::route($redirect_path)
+                    ->withInput()->withErrors($validator);
         }
-        return Redirect::route('add')->with('msg-fail', 'Unable to save data!');
+        return Redirect::route($redirect_path)
+                    ->with('msg-fail', 'Unable to save data!');
+    }
+
+    // Items - Delete Item (GET)
+    public function getItemsDelete($id)
+    {
+        $item = Item::find($id);
+        if( $item ) {
+            $item->delete();
+            return Redirect::route('overview')
+            ->with('msg-success', 'Data deleted successfully!');
+        }
+        return Redirect::route('overview')
+        ->with('msg-fail', 'Unable to delete item!');
+    }
+
+    // Items - Edit Item (GET)
+    public function getItemsEdit($id)
+    {
+        $item = Item::where('id', $id)->take(1);
+        return View::make('add.add', array(
+            'title' => 'DANS ENERGY - Edit New Item',
+            'page' => 'add',
+            'item' => $item->first()
+        ));
     }
 }

@@ -26,7 +26,7 @@
                 @endif
                 <tr>
                     <td>
-                        <select name="type" class="nomenclatures-select" onchange="if(this.value >= 0) {this.style.color = '#333';} else {this.style.color = '#aaa';}">
+                        <select name="type" class="nomenclatures-select">
                             <option value="-1">-- Select Type --</option>
                             <option value="{{ INCOMES }}">Incomes</option>
                             <option value="{{ EXPENSES }}">Expenses</option>
@@ -52,7 +52,7 @@
                 </tr>
                 <tr>
                     <td>
-                        <select name="access" class="nomenclatures-select" onchange="if(this.value > 0) {this.style.color = '#333';} else {this.style.color = '#aaa';}" >
+                        <select name="access" class="nomenclatures-select">
                             <option class="option-first" value="-1">-- Select Access Permissions --</option>
                             <option value="1">Administrator</option>
                             <option value="2">Manager</option>

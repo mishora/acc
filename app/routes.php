@@ -11,11 +11,31 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'OverviewController@getOverview'
     ));
 
-    /*=============================   Add New   ==============================*/
-    // Add New (GET)
+    // Overview (GET)
+    Route::get ( '/overview', function() {
+        return Redirect::route('overview');
+    });
+
+    // Mark (GET)
+    Route::get ('/mark', function() {
+        return Redirect::route('overview');
+    });
+
+    /*=============================   Items   ==============================*/
+    // Items (GET)
     Route::get ( '/add', array(
         'as' => 'add',
-        'uses' => 'AddController@getAdd'
+        'uses' => 'ItemsController@getAdd'
+    ));
+    // Item delete - Delete Item (GET)
+    Route::get('/delete/{id}', array(
+        'as' => 'items-delete',
+        'uses' => 'ItemsController@getItemsDelete'
+    ));
+    // Nomenclatures - Edit Item {GET}
+    Route::get('/{id}', array(
+        'as' => 'items-edit',
+        'uses' => 'ItemsController@getItemsEdit'
     ));
 
     /*=============================   Account   ==============================*/
@@ -95,11 +115,23 @@ Route::group(array('before' => 'auth'), function() {
 
     /*** CSRF protection ***/
     Route::group(array('before' => 'csrf'), function(){
-        /*---------------------------   Add New   ----------------------------*/
-        // Add New (POST)
-        Route::post( '/add', array(
-            'as' => 'add-post',
-            'uses' => 'AddController@postAdd'
+        /*--------------------------   Overview   ----------------------------*/
+        // Mark (POST)
+        Route::post( '/mark', array(
+            'as' => 'mark',
+            'uses' => 'OverviewController@postMark'
+        ));
+
+        Route::post('/overview', array(
+            'as' => 'overview-filters',
+            'uses' => 'OverviewController@postOverviewFilters'
+        ));
+
+        /*---------------------------   Items   ----------------------------*/
+        // Items (POST)
+        Route::post( '/add{id?}', array(
+            'as' => 'items-post',
+            'uses' => 'ItemsController@postItemsAdd'
         ));
         /*------------------------   Nomenclatures   -------------------------*/
         // Nomenclatures - Offices (POST)

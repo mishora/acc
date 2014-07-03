@@ -11,7 +11,9 @@
             <ul>
                 <li><a href="{{ URL::route('nomenclatures-offices') }}">Offices</a></li>
                 <li><a href="{{ URL::route('nomenclatures-categories') }}">Categories</a></li>
-                <li><a href="{{ URL::route('nomenclatures-operators') }}">Operators</a></li>
+                @if(Config::get('maps.access.'.Auth::user()->access) == 'Administrator' )
+                    <li><a href="{{ URL::route('nomenclatures-operators') }}">Operators</a></li>
+                @endif
             </ul>
         </li>
         <li{{ $page=='profile' ? ' class="current_page"' : ''}}>

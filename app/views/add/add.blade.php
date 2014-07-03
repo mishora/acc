@@ -4,20 +4,31 @@ $offc_list = NomenclaturesController::getOfficesList();
 $cat_list = NomenclaturesController::getCatsList();
 ?>
 @section('content')
-    <h1 class="noms">Add New Item</h1>
+    @if(isset($item))
+        <h1 class="noms">Edit Item</h1>
+    @else
+        <h1 class="noms">Add New Item</h1>
+    @endif
     <form class="nomenclatures-form"
-        action="{{ URL::action('add-post') }}"
+        action="{{ (isset($item)) ? URL::action('items-post', array('id' => $item['id'] )) : URL::action('items-post')}}"
         method="post"
     >
         <fieldset class="nomenclatures-fieldset">
             <legend>
-                @if(1 > 1)
+                @if(isset($item))
                     Edit Item
                 @else
                     Add New Item
                 @endif
             </legend>
             <table class="nomenclatures-table add_items" style="width:97%">
+                @if(isset($item))
+                <tr>
+                    <td class="back">
+                        <a href="{{URL::route('overview')}}">Back</a>
+                     </td>
+                </tr>
+                @endif
                 <tr>
                     <td>
                         <select name="office" onchange="if(this.value >= 0) {this.style.color = '#333';} else {this.style.color = '#aaa';}">
@@ -29,6 +40,12 @@ $cat_list = NomenclaturesController::getCatsList();
                         <br>
                         @if($errors->has('office'))
                             <span class="errors">{{ $errors->first('office') }}</span>
+                        @endif
+                        @if(isset($item))
+                            <script type="text/javascript">
+                                set_selected_option('office', '<?php echo $item['office']; ?>');
+                                console.log('<?php echo Input::old('office'); ?>');
+                            </script>
                         @endif
                         @if(Input::old('office') > -1)
                             <script type="text/javascript">
@@ -50,6 +67,12 @@ $cat_list = NomenclaturesController::getCatsList();
                         @if($errors->has('cat'))
                             <span class="errors">{{ $errors->first('cat') }}</span>
                         @endif
+                        @if(isset($item))
+                            <script type="text/javascript">
+                                set_selected_option('cat', '<?php echo $item['cat']; ?>');
+                                console.log('<?php echo Input::old('office'); ?>');
+                            </script>
+                        @endif
                         @if(Input::old('cat') > -1)
                             <script type="text/javascript">
                                 set_selected_option('cat', '<?php echo Input::old('cat'); ?>');
@@ -60,7 +83,11 @@ $cat_list = NomenclaturesController::getCatsList();
                 </tr>
                 <tr>
                     <td>
-                        <input type="text" name="name" placeholder="Name"{{ (Input::old('name')) ? ' value="'.Input::old('name').'"' : ''}}>
+                        <input type="text" name="name"
+                            placeholder="Name"
+                            {{ (isset($item['name']) && !Input::old('name')) ? ' value="'.$item['name'].'"' : ''}}
+                            {{ (Input::old('name')) ? ' value="'.Input::old('name').'"' : ''}}
+                        >
                         <br>
                         @if($errors->has('name'))
                             <span class="errors">{{ $errors->first('name') }}</span>
@@ -73,7 +100,10 @@ $cat_list = NomenclaturesController::getCatsList();
                             <tr class="input_numbers" style="vertical-align: top;">
                                 <td>
                                     <p>Quantity</p>
-                                    <input type="number" name="quantity" step="any"{{ (Input::old('quantity')) ? ' value="'.Input::old('quantity').'"' : ''}}>
+                                    <input type="number" name="quantity" step="any"
+                                        {{ (isset($item['quantity']) && !Input::old('quantity')) ? ' value="'.$item['quantity'].'"' : ''}}
+                                        {{ (Input::old('quantity')) ? ' value="'.Input::old('quantity').'"' : ''}}
+                                    >
                                     <br>
                                     @if($errors->has('quantity'))
                                         <span class="errors">{{ $errors->first('quantity') }}</span>
@@ -81,7 +111,10 @@ $cat_list = NomenclaturesController::getCatsList();
                                 </td>
                                 <td style="padding-left: 10px;">
                                     <p>Price (&euro;)</p>
-                                    <input type="number" name="price" step="any"{{ (Input::old('price')) ? ' value="'.Input::old('price').'"' : ''}}>
+                                    <input type="number" name="price" step="any"
+                                        {{ (isset($item['price']) && !Input::old('price')) ? ' value="'.$item['price'].'"' : ''}}
+                                        {{ (Input::old('price')) ? ' value="'.Input::old('price').'"' : ''}}
+                                    >
                                     <br>
                                     @if($errors->has('price'))
                                         <span class="errors">{{ $errors->first('price') }}</span>
@@ -95,9 +128,9 @@ $cat_list = NomenclaturesController::getCatsList();
                     <td>
                     <p>Amount (&euro;)</p>
                         <input style="background: #dfdfdf; width: 60%; text-align: center"
-                                type="number" name="amount"
-                                readonly="readonly" step="any"
-                                value="{{ (Input::old('amount')) ? Input::old('amount') : ''}}"
+                                type="number" name="amount" readonly="readonly" step="any"
+                                {{ (isset($item['amount']) && !Input::old('amount')) ? ' value="'.$item['amount'].'"' : ''}}
+                                {{ (Input::old('amount')) ? ' value="'.Input::old('amount').'"' : ''}}
                         >
                         <br>
                         @if($errors->has('amount'))
@@ -109,11 +142,11 @@ $cat_list = NomenclaturesController::getCatsList();
                     <td>
                         <textarea rows="5" name="desc" placeholder="Description" style="width: 98%;"><?php
 
-                            if (isset($office) || Input::old('desc')) {
+                            if (isset($item) || Input::old('desc')) {
                                 if (Input::old('desc')) {
                                     echo Input::old('desc');
                                 } else {
-                                    echo $office['desc'];
+                                    echo $item['desc'];
                                 }
                             }
                         ?></textarea>
@@ -125,6 +158,11 @@ $cat_list = NomenclaturesController::getCatsList();
                             <tr class="input_numbers" style="vertical-align: top;">
                                 <td>
                                     <?php
+                                    if (isset($item) && !Input::old('issue_date')) {
+                                        echo '<script type="text/javascript">
+                                                    issue_date = "'.date('d-M-Y', $item['issue_date']).'";
+                                              </script>';
+                                    }
                                     if (Input::old('issue_date')) {
                                         echo '<script type="text/javascript">
                                                     issue_date = "'.Input::old('issue_date').'";
@@ -143,6 +181,11 @@ $cat_list = NomenclaturesController::getCatsList();
                                 </td>
                                 <td style="padding-left: 10px;">
                                     <?php
+                                    if (isset($item) && !Input::old('pay_date')) {
+                                        echo '<script type="text/javascript">
+                                                    pay_date = "'.date('d-M-Y', $item['pay_date']).'";
+                                              </script>';
+                                    }
                                     if (Input::old('pay_date')) {
                                         echo '<script type="text/javascript">
                                                     pay_date = "'.Input::old('pay_date').'";
@@ -165,6 +208,9 @@ $cat_list = NomenclaturesController::getCatsList();
                 </tr>
                 <tr>
                     <td class="td-align-right" style="padding-top: 20px;">
+                        @if(isset($item))
+                            <input type="hidden" name="id" value="{{ $item['id'] }}">
+                        @endif
                         {{ Form::token() }}
                         <input type="submit" value="Save" name="save">
                     </td>

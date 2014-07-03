@@ -9,4 +9,21 @@ class Item extends Eloquent
         'amount', 'issue_date', 'issue_check', 'pay_date',
         'pay_check', 'created_at', 'updated_at'
     );
+
+    public function mark($type)
+    {
+        if ($type == 'issue_check') {
+            $this->issue_check = $this->issue_check ? false : true;
+        }
+
+        if ($type == 'pay_check') {
+            $this->pay_check = $this->pay_check ? false : true;
+        }
+
+        if (!$this->save()) {
+        	return -1;
+        }
+        return 0;
+    }
+
 }

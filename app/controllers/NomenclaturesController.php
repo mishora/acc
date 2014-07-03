@@ -31,8 +31,10 @@ class NomenclaturesController extends BaseController
         if( $office ) {
             $office->delete();
             return Redirect::route('nomenclatures-offices')
-            ->with('msg-success', 'Data deleted successfully!');
+                ->with('msg-success', 'Data deleted successfully!');
         }
+        return Redirect::route('nomenclatures-offices')
+            ->with('msg-fail', 'Unable to delete office!');
     }
     // Nomenclatures - Offices (POST)
     public function postOffices()
@@ -68,8 +70,8 @@ class NomenclaturesController extends BaseController
         ));
 
         if ($validator->fails()) {
-            return Redirect::route('nomenclatures-offices-edit', array('id' => $id))
-                                    ->withErrors($validator)->withInput();
+            return Redirect::route('nomenclatures-offices-edit',
+                    array('id' => $id))->withErrors($validator)->withInput();
         } else {
             $office = Office::where('id', $id)->take(1)->first();
             $office->name = Input::get('name');
@@ -84,7 +86,7 @@ class NomenclaturesController extends BaseController
         return Redirect::route('nomenclatures-offices')
                     ->with('msg-fail', 'Unable to update data!');
     }
-
+    // Nomenclatures - Get list of offices
     public static function getOfficesList()
     {
         return Office::all();
@@ -120,8 +122,10 @@ class NomenclaturesController extends BaseController
         if($cat) {
             $cat->delete();
             return Redirect::route('nomenclatures-categories')
-            ->with('msg-success', 'Data deleted successfully!');
+                ->with('msg-success', 'Data deleted successfully!');
         }
+        return Redirect::route('nomenclatures-categories')
+            ->with('msg-fail', 'Unable to delete category!');
     }
     // Nomenclatures - Categories (POST)
     public function postCategories()
@@ -200,7 +204,13 @@ class NomenclaturesController extends BaseController
     // Nomenclatures - Operators (GET)
     public function getOperators()
     {
-        $operators =  User::all()->toArray();
+        $operators =  User::where('username', '!=', 'admin')->get();
+
+        if(Config::get('maps.access.' .
+                        Auth::user()->access) != 'Administrator') {
+            return Redirect::route('overview');
+        }
+
         return View::make('nomenclatures.operators', array(
             'title' => 'DANS ENERGY - Offices',
             'page' => 'nomenclatures',
@@ -210,6 +220,10 @@ class NomenclaturesController extends BaseController
     // Nomenclatures - Operators Edit (GET)
     public function getOperatorsEdit($id)
     {
+        if(Config::get('maps.access.' .
+                Auth::user()->access) != 'Administrator') {
+            return Redirect::route('overview');
+        }
         $operator = User::where('id', $id)->take(1);
         return View::make('nomenclatures.operators', array(
             'title' => 'DANS ENERGY - Edit  Offices',
@@ -226,6 +240,8 @@ class NomenclaturesController extends BaseController
             return Redirect::route('nomenclatures-operators')
             ->with('msg-success', 'Data deleted successfully!');
         }
+        return Redirect::route('nomenclatures-operators')
+            ->with('msg-fail', 'Unable to delete the operator!');
     }
     // Nomenclatures - Operators (POST)
     public function postOperators()
