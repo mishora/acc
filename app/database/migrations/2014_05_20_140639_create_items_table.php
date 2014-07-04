@@ -26,6 +26,7 @@ class CreateItemsTable extends Migration
             $table->integer('issue_date');
             $table->boolean('issue_check');
             $table->integer('pay_date');
+            $table->string('reason', 100);
             $table->boolean('pay_check');
             $table->timestamps();
         });

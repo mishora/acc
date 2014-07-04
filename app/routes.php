@@ -33,7 +33,7 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'ItemsController@getItemsDelete'
     ));
     // Nomenclatures - Edit Item {GET}
-    Route::get('/{id}', array(
+    Route::get('/items/{id}', array(
         'as' => 'items-edit',
         'uses' => 'ItemsController@getItemsEdit'
     ));
@@ -43,11 +43,6 @@ Route::group(array('before' => 'auth'), function() {
     Route::get('/account/signout', array(
         'as' => 'account-sign-out',
         'uses' => 'AccountController@getSignOut'
-    ));
-    // Account - Profile (GET)
-    Route::get('/account/profile', array(
-        'as' => 'account-profile',
-        ''
     ));
 
     /*==========================   Nomenclatures   ===========================*/
@@ -106,9 +101,14 @@ Route::group(array('before' => 'auth'), function() {
 
     /*=============================   Profile   ==============================*/
     // Profile - (GET)
-    Route::get('/profile', array(
+    Route::get('profile', array(
         'as' => 'profile',
         'uses' => 'AccountController@getProfile'
+    ));
+    // Profile - (GET)
+    Route::get('profiles', array(
+        'as' => 'profiles',
+        'uses' => 'AccountController@getProfiles'
     ));
 
     /*============================   CSRF   ==================================*/

@@ -96,9 +96,22 @@ $cat_list = NomenclaturesController::getCatsList();
                 </tr>
                 <tr>
                     <td>
-                        <table cellpadding="0px" cellspacing="0px" style="width: 100%;">
+                        <input type="text" name="reason"
+                            placeholder="Reason"
+                            {{ (isset($item['reason']) && !Input::old('reason')) ? ' value="'.$item['reason'].'"' : ''}}
+                            {{ (Input::old('reason')) ? ' value="'.Input::old('reason').'"' : ''}}
+                        >
+                        <br>
+                        @if($errors->has('name'))
+                            <span class="errors">{{ $errors->first('name') }}</span>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td style="text-align: left;">
+                        <table cellpadding="0px" cellspacing="0px" >
                             <tr class="input_numbers" style="vertical-align: top;">
-                                <td>
+                                <td style="text-align: left;">
                                     <p>Quantity</p>
                                     <input type="number" name="quantity" step="any"
                                         {{ (isset($item['quantity']) && !Input::old('quantity')) ? ' value="'.$item['quantity'].'"' : ''}}
@@ -109,7 +122,7 @@ $cat_list = NomenclaturesController::getCatsList();
                                         <span class="errors">{{ $errors->first('quantity') }}</span>
                                     @endif
                                 </td>
-                                <td style="padding-left: 10px;">
+                                <td style="padding-left: 10px;text-align: left;">
                                     <p>Price (&euro;)</p>
                                     <input type="number" name="price" step="any"
                                         {{ (isset($item['price']) && !Input::old('price')) ? ' value="'.$item['price'].'"' : ''}}
@@ -125,7 +138,7 @@ $cat_list = NomenclaturesController::getCatsList();
                     </td>
                 </tr>
                 <tr class="input_numbers">
-                    <td>
+                    <td style="text-align: left;">
                     <p>Amount (&euro;)</p>
                         <input style="background: #dfdfdf; width: 60%; text-align: center"
                                 type="number" name="amount" readonly="readonly" step="any"
@@ -153,10 +166,10 @@ $cat_list = NomenclaturesController::getCatsList();
                     </td>
                 </tr>
                 <tr>
-                    <td id="dates">
-                        <table cellpadding="0px" cellspacing="0px" style="width: 100%;">
+                    <td id="dates" style="text-align: left;">
+                        <table cellpadding="0px" cellspacing="0px">
                             <tr class="input_numbers" style="vertical-align: top;">
-                                <td>
+                                <td style="text-align: left;">
                                     <?php
                                     if (isset($item) && !Input::old('issue_date')) {
                                         echo '<script type="text/javascript">
@@ -179,7 +192,7 @@ $cat_list = NomenclaturesController::getCatsList();
                                         <span class="errors">{{ $errors->first('issue_date') }}</span>
                                     @endif
                                 </td>
-                                <td style="padding-left: 10px;">
+                                <td style="padding-left: 10px;text-align: left;">
                                     <?php
                                     if (isset($item) && !Input::old('pay_date')) {
                                         echo '<script type="text/javascript">

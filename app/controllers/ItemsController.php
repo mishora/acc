@@ -3,10 +3,12 @@ class ItemsController extends BaseController
 {
     public function getAdd()
     {
+
         return View::make('add.add', array(
             'title' => 'DANS ENERGY - Add New Item',
             'page' => 'add'
         ));
+
     }
 
     public function postItemsAdd($id = null)
@@ -46,6 +48,7 @@ class ItemsController extends BaseController
             $item->amount = Input::get('amount');
             $item->issue_date = strtotime(Input::get('issue_date'));
             $item->pay_date = strtotime(Input::get('pay_date'));
+            $item->reason = Input::get('reason');
 
             $item->access = $cat['access'];
             $item->type = $cat['type'];
@@ -84,4 +87,5 @@ class ItemsController extends BaseController
             'item' => $item->first()
         ));
     }
+
 }
