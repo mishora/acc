@@ -48,6 +48,7 @@ class ItemsController extends BaseController
             $item->amount = Input::get('amount');
             $item->issue_date = strtotime(Input::get('issue_date'));
             $item->pay_date = strtotime(Input::get('pay_date'));
+            $item->inexact = Input::get('inexact') ? true : false;
             $item->reason = Input::get('reason');
 
             $item->access = $cat['access'];

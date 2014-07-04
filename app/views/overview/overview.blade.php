@@ -77,8 +77,13 @@
             <td title="{{ $item['desc'] }}">{{ Config::get('maps.type.'.$item['type']) }}</td>
             <td title="{{ $item['desc'] }}">{{ $cats_names[$item['cat']] }}</td>
             <td title="{{ $item['desc'] }}">{{ $item['name'] }}</td>
-            <td title="{{ $item['desc'] }}">{{ date('d.M.Y',$item['issue_date']) }}</td>
-            <td title="{{ $item['desc'] }}">{{ date('d.M.Y',$item['pay_date']) }}</td>
+            <td{{ ($item['inexact']) ? ' title="Needs to be specified" style="color: #660000;font-weight: bold;"' : ''}}
+            >
+                {{ date('d.M.Y',$item['issue_date']) }}
+            </td>
+            <td{{ ($item['inexact']) ? ' title="Needs to be specified" style="color: #660000;font-weight: bold;"' : ''}}>
+                {{ date('d.M.Y',$item['pay_date']) }}
+            </td>
             <td title="Quantity: {{ number_format($item['quantity'], 3, '.', ' ') }}" style="text-align: right;">
                 {{ number_format($item['quantity'], 2, '.', ' ') }}
             </td>

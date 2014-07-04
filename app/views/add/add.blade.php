@@ -95,19 +95,6 @@ $cat_list = NomenclaturesController::getCatsList();
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        <input type="text" name="reason"
-                            placeholder="Reason"
-                            {{ (isset($item['reason']) && !Input::old('reason')) ? ' value="'.$item['reason'].'"' : ''}}
-                            {{ (Input::old('reason')) ? ' value="'.Input::old('reason').'"' : ''}}
-                        >
-                        <br>
-                        @if($errors->has('name'))
-                            <span class="errors">{{ $errors->first('name') }}</span>
-                        @endif
-                    </td>
-                </tr>
-                <tr>
                     <td style="text-align: left;">
                         <table cellpadding="0px" cellspacing="0px" >
                             <tr class="input_numbers" style="vertical-align: top;">
@@ -140,7 +127,7 @@ $cat_list = NomenclaturesController::getCatsList();
                 <tr class="input_numbers">
                     <td style="text-align: left;">
                     <p>Amount (&euro;)</p>
-                        <input width: 60%; text-align: center"
+                        <input style="width: 100%; text-align: center; font-weight: bold;"
                                 type="number" name="amount" step="any"
                                 {{ (isset($item['amount']) && !Input::old('amount')) ? ' value="'.$item['amount'].'"' : ''}}
                                 {{ (Input::old('amount')) ? ' value="'.Input::old('amount').'"' : ''}}
@@ -215,8 +202,43 @@ $cat_list = NomenclaturesController::getCatsList();
                                         <span class="errors">{{ $errors->first('pay_date') }}</span>
                                     @endif
                                 </td>
+                                <td style="vertical-align: bottom;">
+                                    <input id="inexact" type="checkbox" name="inexact"
+                                    <?php
+                                    if (isset($item) && !Input::old('inexact') ) {
+                                        if ($item['inexact'] > 0) {
+                                            echo 'checked="checked"';
+                                        }
+                                    } else if (Input::old('inexact')) {
+                                        if (Input::old('inexact') > 0) {
+                                        	echo 'checked="checked"';
+                                        }
+                                    } else {
+                                    	echo 'checked="checked"';
+                                    }
+
+                                    ?>
+                                    >
+                                    <label for="inexact" style="font-size: 14px;">
+                                        Inexact
+                                    </label>
+                                </td>
                             </tr>
                         </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Reason: </p>
+                        <input type="text" name="reason"
+                            placeholder="Reason"
+                            {{ (isset($item['reason']) && !Input::old('reason')) ? ' value="'.$item['reason'].'"' : ''}}
+                            {{ (Input::old('reason')) ? ' value="'.Input::old('reason').'"' : ''}}
+                        >
+                        <br>
+                        @if($errors->has('name'))
+                            <span class="errors">{{ $errors->first('name') }}</span>
+                        @endif
                     </td>
                 </tr>
                 <tr>

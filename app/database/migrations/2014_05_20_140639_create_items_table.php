@@ -19,7 +19,7 @@ class CreateItemsTable extends Migration
             $table->integer('cat');
             $table->integer('access');
             $table->string('name', 60);
-            $table->string('desc', 255);
+            $table->text('desc');
             $table->double('quantity');
             $table->double('price');
             $table->double('amount');
@@ -28,6 +28,7 @@ class CreateItemsTable extends Migration
             $table->integer('pay_date');
             $table->string('reason', 100);
             $table->boolean('pay_check');
+            $table->boolean('inexact');
             $table->timestamps();
         });
     }
