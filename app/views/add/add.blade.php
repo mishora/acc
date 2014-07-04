@@ -205,7 +205,7 @@ $cat_list = NomenclaturesController::getCatsList();
                                               </script>';
                                     }
                                     ?>
-                                    <p>Pay Date: </p>
+                                    <p>Due Date: </p>
                                     <input type="text" name="pay_date"
                                             class="datepicker" value=""
                                             placeholder="Click to Select"

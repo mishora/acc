@@ -4,7 +4,7 @@
     <h1 class="noms">Overview And Reports</h1>
     <table class="nomenclatures-table-list overview-table">
         <tr>
-            <td colspan="14">
+            <td colspan="15">
                 <form action="{{ URL::action('overview-filters') }}" method="post">
                     <label for="from">From</label>
                     <input  type="text" id="from" name="from_date"
@@ -50,7 +50,7 @@
             </td>
         </tr>
         <tr class="empty_row">
-            <td class="empty_row_td" colspan="14"></td>
+            <td class="empty_row_td" colspan="15"></td>
         </tr>
         <tr>
             <th title="Click to order by ID">ID</th>
@@ -59,10 +59,11 @@
             <th title="Click to order by Category">Category</th>
             <th title="Click to order by Name">Name</th>
             <th title="Click to order by Issue Date">Issue Date</th>
-            <th title="Click to order by Pay Date">Pay Date</th>
+            <th title="Click to order by Due Date">Due Date</th>
             <th title="Click to order by Quantity">Quantity</th>
             <th title="Click to order by Price">Price <small>(&euro;)</small></th>
             <th title="Click to order by Amount">Amount <small>(&euro;)</small></th>
+            <th title="Click to order by Reason">Reason</th>
             <th title="Click to order by Issued Checked">Issued</th>
             <th title="Click to order by Paid Checked">Paid</th>
             <th>Edit</th>
@@ -87,6 +88,7 @@
             <td title="Amount: {{ number_format($item['amount'], 5, '.', ' ') }} &euro;" style="text-align: right;">
                 {{ number_format($item['amount'], 2, '.', ' ') }}
             </td>
+            <td title="{{ $item['reason'] }}">{{ $item['reason'] }}</td>
             <td style="text-align: center">
                 <?php $num++; ?>
                 <form id="form_{{ $num }}" action="{{ URL::action('mark') }}" method="post">
@@ -142,10 +144,10 @@
         </tr>
         @endforeach
         <tr class="empty_row">
-            <td class="empty_row_td" colspan="14"></td>
+            <td class="empty_row_td" colspan="15"></td>
         </tr>
         <tr id="result">
-            <td colspan="14" style="text-align: right;padding: 0px">
+            <td colspan="15" style="text-align: right;padding: 0px">
                 <table class="result" border="0px" cellspacing="0px" cellpadding="15px">
                     <tr class="incomes">
                         <td style="color: #003300;width: 100px;border-right:1px solid #ccc;">Incomes: </td>
