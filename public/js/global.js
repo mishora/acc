@@ -43,13 +43,17 @@ onload = function(e) {
         }
     });
 	
-	/* Calculate Amount */
+	/* Calculate Amount/Price */
 	$('input[name=quantity]').bind('input', function(){
-		calc_amount();
+		calc_amount('quantity');
 	});
 	
 	$('input[name=price]').bind('input', function(){
-		calc_amount();
+		calc_amount('price');
+	});
+	
+	$('input[name=amount]').bind('input', function(){
+		calc_amount('amount');
 	});
 	
 	/*------------------------------------*/
@@ -111,10 +115,20 @@ function set_selected_option(target, val)
 	}	
 }
 
-function calc_amount()
+/**
+ * @param{string} elem
+ * 
+ * */
+function calc_amount(elem)
 {
 	var qty = parseFloat($('input[name=quantity]').val()) || 0;
 	var price = parseFloat($('input[name=price]').val()) || 0;
-	console.log(typeof(qty) + "   " + qty);
-	$('input[name=amount]').val(parseFloat(qty * price).toFixed(5));
+	var amount = parseFloat($('input[name=amount]').val()) || 0;
+	if (elem == 'price' || elem == 'quantity') {
+		$('input[name=amount]').val(parseFloat(qty * price).toFixed(5));
+	}
+	if (elem == 'amount') {
+		$('input[name=price]').val(parseFloat(amount / qty).toFixed(5));
+	}
+	
 }

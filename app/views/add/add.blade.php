@@ -113,7 +113,7 @@ $cat_list = NomenclaturesController::getCatsList();
                             <tr class="input_numbers" style="vertical-align: top;">
                                 <td style="text-align: left;">
                                     <p>Quantity</p>
-                                    <input type="number" name="quantity" step="any"
+                                    <input type="number" name="quantity" step="any" id="qty"
                                         {{ (isset($item['quantity']) && !Input::old('quantity')) ? ' value="'.$item['quantity'].'"' : ''}}
                                         {{ (Input::old('quantity')) ? ' value="'.Input::old('quantity').'"' : ''}}
                                     >
@@ -124,7 +124,7 @@ $cat_list = NomenclaturesController::getCatsList();
                                 </td>
                                 <td style="padding-left: 10px;text-align: left;">
                                     <p>Price (&euro;)</p>
-                                    <input type="number" name="price" step="any"
+                                    <input type="number" name="price" step="any" id="price"
                                         {{ (isset($item['price']) && !Input::old('price')) ? ' value="'.$item['price'].'"' : ''}}
                                         {{ (Input::old('price')) ? ' value="'.Input::old('price').'"' : ''}}
                                     >
@@ -140,8 +140,8 @@ $cat_list = NomenclaturesController::getCatsList();
                 <tr class="input_numbers">
                     <td style="text-align: left;">
                     <p>Amount (&euro;)</p>
-                        <input style="background: #dfdfdf; width: 60%; text-align: center"
-                                type="number" name="amount" readonly="readonly" step="any"
+                        <input width: 60%; text-align: center"
+                                type="number" name="amount" step="any"
                                 {{ (isset($item['amount']) && !Input::old('amount')) ? ' value="'.$item['amount'].'"' : ''}}
                                 {{ (Input::old('amount')) ? ' value="'.Input::old('amount').'"' : ''}}
                         >
