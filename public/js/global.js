@@ -14,6 +14,8 @@ onload = function(e) {
 	$(".datepicker").datepicker({
 		dateFormat: 'dd-M-yy',
 		showOtherMonths: true,
+		firstDay: 1,
+		showWeek: true
 		}
 	);
 	
@@ -28,6 +30,7 @@ onload = function(e) {
         showOtherMonths: true,
         numberOfMonths: 3,
         dateFormat: 'dd-M-yy',
+        firstDay: 1,
         onClose: function( selectedDate ) {
         	$( "#to" ).datepicker( "option", "minDate", selectedDate );
         }
@@ -38,6 +41,7 @@ onload = function(e) {
         showOtherMonths: true,
         numberOfMonths: 3,
         dateFormat: 'dd-M-yy',
+        firstDay: 1,
         onClose: function( selectedDate ) {
             $( "#from" ).datepicker( "option", "maxDate", selectedDate );
         }
