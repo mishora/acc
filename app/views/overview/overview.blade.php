@@ -176,7 +176,3 @@
         </tr>
     </table>
 @stop
-
-<!--
-URL::route('nomenclatures-offices-edit', array('id' => $office['id'] ))
--->

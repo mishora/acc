@@ -25,10 +25,17 @@ class AccountController extends BaseController
             return Redirect::route('account-sign-in')
                 ->withErrors($validator)->withInput();
         } else {
+
             $auth = Auth::attempt(array(
                 'username' => Input::get('username'),
                 'password' => Input::get('password')
             ));
+
+            if (Auth::user()->ban > 0) {
+                Auth::logout();
+                return Redirect::route('account-sign-in')->with('msg',
+                                    'This Account is blocked!');
+            }
 
             if ($auth) {
                 return Redirect::intended('/');
