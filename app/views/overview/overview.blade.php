@@ -58,11 +58,11 @@
             <th title="Click to order by Type">Type</th>
             <th title="Click to order by Category">Category</th>
             <th title="Click to order by Name">Name</th>
-            <th title="Click to order by Issue Date">Issue Date</th>
-            <th title="Click to order by Due Date">Due Date</th>
             <th title="Click to order by Quantity">Quantity</th>
             <th title="Click to order by Price">Price <small>(&euro;)</small></th>
             <th title="Click to order by Amount">Amount <small>(&euro;)</small></th>
+            <th title="Click to order by Issue Date">Issue Date</th>
+            <th title="Click to order by Due Date">Due Date</th>
             <th title="Click to order by Reason">Reason</th>
             <th title="Click to order by Issued Checked">Issued</th>
             <th title="Click to order by Paid Checked">Paid</th>
@@ -77,21 +77,23 @@
             <td title="{{ $item['desc'] }}">{{ Config::get('maps.type.'.$item['type']) }}</td>
             <td title="{{ $item['desc'] }}">{{ $cats_names[$item['cat']] }}</td>
             <td title="{{ $item['desc'] }}">{{ $item['name'] }}</td>
-            <td{{ ($item['inexact']) ? ' title="Needs to be specified" style="color: #660000;font-weight: bold;"' : ''}}
-            >
-                {{ date('d.M.Y',$item['issue_date']) }}
-            </td>
-            <td{{ ($item['inexact']) ? ' title="Needs to be specified" style="color: #660000;font-weight: bold;"' : ''}}>
-                {{ date('d.M.Y',$item['pay_date']) }}
-            </td>
             <td title="Quantity: {{ number_format($item['quantity'], 3, '.', ' ') }}" style="text-align: right;">
                 {{ number_format($item['quantity'], 2, '.', ' ') }}
             </td>
-            <td title="Price: {{ number_format($item['price'], 5, '.', ' ') }} &euro;" style="text-align: right;">
+            <td{{ ($item['inexact']) ? ' title="Prognosis: '.number_format($item['price'], 2, '.', ' ').' &euro;"
+                style="color: #660000;font-weight: bold;text-align: right;"' :
+                ' title="'.number_format($item['price'], 2, '.', ' ').' &euro;" style="text-align: right;"'}}
+            >
                 {{ number_format($item['price'], 2, '.', ' ') }}
             </td>
             <td title="Amount: {{ number_format($item['amount'], 5, '.', ' ') }} &euro;" style="text-align: right;">
                 {{ number_format($item['amount'], 2, '.', ' ') }}
+            </td>
+            <td title="{{ $item['desc'] }}">
+                {{ date('d.M.Y',$item['issue_date']) }}
+            </td>
+            <td title="{{ $item['desc'] }}">
+                {{ date('d.M.Y',$item['pay_date']) }}
             </td>
             <td title="{{ $item['reason'] }}">{{ $item['reason'] }}</td>
             <td style="text-align: center">

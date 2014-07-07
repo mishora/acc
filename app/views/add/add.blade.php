@@ -120,6 +120,27 @@ $cat_list = NomenclaturesController::getCatsList();
                                         <span class="errors">{{ $errors->first('price') }}</span>
                                     @endif
                                 </td>
+                                <td style="vertical-align: bottom;">
+                                    <input id="inexact" type="checkbox" name="inexact"
+                                    <?php
+                                    if (isset($item) && !Input::old('inexact') ) {
+                                        if ($item['inexact'] > 0) {
+                                            echo 'checked="checked"';
+                                        }
+                                    } else if (Input::old('inexact')) {
+                                        if (Input::old('inexact') > 0) {
+                                        	echo 'checked="checked"';
+                                        }
+                                    } else {
+                                    	echo 'checked="checked"';
+                                    }
+
+                                    ?>
+                                    >
+                                    <label for="inexact" style="font-size: 14px;">
+                                        Prognosis
+                                    </label>
+                                </td>
                             </tr>
                         </table>
                     </td>
@@ -201,27 +222,6 @@ $cat_list = NomenclaturesController::getCatsList();
                                     @if($errors->has('pay_date'))
                                         <span class="errors">{{ $errors->first('pay_date') }}</span>
                                     @endif
-                                </td>
-                                <td style="vertical-align: bottom;">
-                                    <input id="inexact" type="checkbox" name="inexact"
-                                    <?php
-                                    if (isset($item) && !Input::old('inexact') ) {
-                                        if ($item['inexact'] > 0) {
-                                            echo 'checked="checked"';
-                                        }
-                                    } else if (Input::old('inexact')) {
-                                        if (Input::old('inexact') > 0) {
-                                        	echo 'checked="checked"';
-                                        }
-                                    } else {
-                                    	echo 'checked="checked"';
-                                    }
-
-                                    ?>
-                                    >
-                                    <label for="inexact" style="font-size: 14px;">
-                                        Inexact
-                                    </label>
                                 </td>
                             </tr>
                         </table>
