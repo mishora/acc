@@ -53,19 +53,52 @@
             <td class="empty_row_td" colspan="15"></td>
         </tr>
         <tr>
-            <th title="Click to order by ID">ID</th>
-            <th title="Click to order by Office">Office</th>
-            <th title="Click to order by Type">Type</th>
-            <th title="Click to order by Category">Category</th>
-            <th title="Click to order by Name">Name</th>
-            <th title="Click to order by Quantity">Quantity</th>
-            <th title="Click to order by Price">Price <small>(&euro;)</small></th>
-            <th title="Click to order by Amount">Amount <small>(&euro;)</small></th>
-            <th title="Click to order by Issue Date">Issue Date</th>
-            <th title="Click to order by Due Date">Due Date</th>
-            <th title="Click to order by Reason">Reason</th>
-            <th title="Click to order by Issued Checked">Issued</th>
-            <th title="Click to order by Paid Checked">Paid</th>
+            <?php
+                $o = '';
+                if (Session::has('order_by')) {
+                    $o = Session::get('order_by');
+                }
+                $italic = 'style="font-style: italic; text-decoration: underline; color: #ccc;"';
+            ?>
+            <th title="Click to order by ID">
+                <a href="{{ URL::to('order', array('by' => 'id')) }}" {{ $o == 'id' ? $italic : ''}}>ID</a>
+            </th>
+            <th title="Click to order by Office">
+                <a href="{{ URL::to('order', array('by' => 'office')) }}" {{ $o == 'office' ? $italic : ''}}>Office</a>
+            </th>
+            <th title="Click to order by Type">
+                <a href="{{ URL::to('order', array('by' => 'type')) }}" {{ $o == 'type' ? $italic : ''}}>Type</a>
+            </th>
+            <th title="Click to order by Category">
+                <a href="{{ URL::to('order', array('by' => 'cat')) }}" {{ $o == 'cat' ? $italic : ''}}>Category</a>
+            </th>
+            <th title="Click to order by Name">
+                <a href="{{ URL::to('order', array('by' => 'name')) }}" {{ $o == 'name' ? $italic : ''}}>Name</a>
+            </th>
+            <th title="Click to order by Quantity">
+                <a href="{{ URL::to('order', array('by' => 'quantity')) }}" {{ $o == 'quantity' ? $italic : ''}}>Quantity</a>
+            </th>
+            <th title="Click to order by Price">
+                <a href="{{ URL::to('order', array('by' => 'price')) }}" {{ $o == 'price' ? $italic : ''}}>Price <small>(&euro;)</small></a>
+            </th>
+            <th title="Click to order by Amount">
+                <a href="{{ URL::to('order', array('by' => 'amount')) }}" {{ $o == 'amount' ? $italic : ''}}>Amount <small>(&euro;)</small></a>
+            </th>
+            <th title="Click to order by Issue Date">
+                <a href="{{ URL::to('order', array('by' => 'issue_date')) }}" {{ $o == 'issue_date' ? $italic : ''}}>Issue Date</a>
+            </th>
+            <th title="Click to order by Due Date">
+                <a href="{{ URL::to('order', array('by' => 'pay_date')) }}" {{ $o == 'pay_date' ? $italic : ''}}>Due Date</a>
+            </th>
+            <th title="Click to order by Reason">
+                <a href="{{ URL::to('order', array('by' => 'reason')) }}" {{ $o == 'reason' ? $italic : ''}}>Reason</a>
+            </th>
+            <th title="Click to order by Issued Checked">
+                <a href="{{ URL::to('order', array('by' => 'issue_check')) }}" {{ $o == 'issue_check' ? $italic : ''}}>Issued</a>
+            </th>
+            <th title="Click to order by Paid Checked">
+                <a href="{{ URL::to('order', array('by' => 'pay_check')) }}" {{ $o == 'pay_check' ? $italic : ''}}>Paid
+            </th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -82,7 +115,7 @@
         }
         ?>
 
-        <tr{{ $insertedBG }}>
+        <tr{{ $insertedBG }} id="{{ $item['id'] }}">
             <td title="{{ $item['desc'] }}" style="text-align: center;">{{ $item['id'] }}</td>
             <td title="{{ $item['desc'] }}">{{ $offices_names[$item['office']] }}</td>
             <td title="{{ $item['desc'] }}">{{ Config::get('maps.type.'.$item['type']) }}</td>
@@ -186,4 +219,7 @@
             </td>
         </tr>
     </table>
+    <script type="text/javascript">
+        location.href = window.location.href + '#{{ Session::get('insertedId') }}';
+    </script>
 @stop

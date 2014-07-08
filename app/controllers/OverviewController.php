@@ -2,7 +2,7 @@
 class OverviewController extends BaseController
 {
     // Overview - Get Overview (GET)
-    public function getOverview()
+    public function getOverview($nav = null)
     {
         $offices_names = array();
         $cats_names = array();
@@ -11,6 +11,7 @@ class OverviewController extends BaseController
         $cats = Cat::all()->toArray();
         $incomes = 0;
         $expenses = 0;
+        $order = 'pay_date';
 
         foreach ($offices as $val) {
             $offices_names[$val['id']] = $val['name'];
@@ -20,8 +21,18 @@ class OverviewController extends BaseController
             $cats_names[$cat['id']] = $cat['name'];
         }
 
+        if (Session::has('order_by')) {
+            $order = Session::get('order_by');
+        }
+        if (Session::has('order_direction')) {
+            $order_direction = Session::get('order_direction');
+        } else {
+            $order_direction = 'asc';
+        }
+
         $items = Item::whereRaw('access >='. Auth::user()->access .
-                    $this::set_where())->orderBy('pay_date')->get();
+                    $this::set_where())
+                            ->orderBy($order, $order_direction)->get();
 
         foreach ($items as $item) {
             if ($item['type'] ==  0) {
@@ -123,4 +134,17 @@ class OverviewController extends BaseController
         return $ret;
     }
 
+    public function getOrderBy($by)
+    {
+        $order_direction = 'asc';
+        if (Session::has('order_direction')) {
+            $order_direction = (Session::get('order_direction')) == 'asc' ?
+                'desc' : 'asc';
+        }
+
+        Session::put('order_by', $by);
+        Session::put('order_direction', $order_direction);
+
+        return Redirect::route('overview');
+    }
 }

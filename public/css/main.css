@@ -423,7 +423,7 @@ hr.fancy-line{
     padding-left: 10px;
 }
 
-.nomenclatures-table-list th {
+.nomenclatures-table-list th, .nomenclatures-table-list th a {
     background: #336699;
     color: #fff;
     height: 18px;
@@ -431,6 +431,7 @@ hr.fancy-line{
     padding: 2px 5px 2px 5px;
     text-align: center;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .nomenclatures-table-list .desc {

@@ -6,7 +6,7 @@ Route::group(array('before' => 'auth'), function() {
 
     /*============================   Overview   ==============================*/
     // Overview (GET)
-    Route::get ( '/', array(
+    Route::get ( '/{nav?}', array(
         'as' => 'overview',
         'uses' => 'OverviewController@getOverview'
     ));
@@ -21,6 +21,11 @@ Route::group(array('before' => 'auth'), function() {
         return Redirect::route('overview');
     });
 
+    // Overview (GET)
+    Route::get ( '/order/{by}', array(
+        'as' => 'order',
+        'uses' => 'OverviewController@getOrderBy'
+    ));
     /*=============================   Items   ==============================*/
     // Items (GET)
     Route::get ( '/add', array(
