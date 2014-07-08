@@ -31,7 +31,7 @@ class AccountController extends BaseController
                 'password' => Input::get('password')
             ));
 
-            if (Auth::user()->ban > 0) {
+            if ($auth && Auth::user()->ban > 0) {
                 Auth::logout();
                 return Redirect::route('account-sign-in')->with('msg',
                                     'This Account is blocked!');
