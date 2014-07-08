@@ -47,9 +47,9 @@
         <div class="content">
             @yield('content')
         </div>
-        <div class="push"></div>
         <div class="footer"></div>
     </div>
+
 </body>
 </html>
 
