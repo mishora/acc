@@ -71,7 +71,18 @@
         </tr>
         <?php $num=0; ?>
         @foreach($items as $item)
-        <tr>
+
+        <?php
+
+        $insertedBG = '';
+        if (Session::has('insertedId')) {
+            if (Session::get('insertedId') == $item['id']) {
+                $insertedBG = ' style="background: linear-gradient(rgba(79, 114, 152, 0.1), #fff, rgba(79, 114, 152, 0.1));"';
+            }
+        }
+        ?>
+
+        <tr{{ $insertedBG }}>
             <td title="{{ $item['desc'] }}" style="text-align: center;">{{ $item['id'] }}</td>
             <td title="{{ $item['desc'] }}">{{ $offices_names[$item['office']] }}</td>
             <td title="{{ $item['desc'] }}">{{ Config::get('maps.type.'.$item['type']) }}</td>

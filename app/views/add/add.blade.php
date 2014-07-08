@@ -85,8 +85,8 @@ $cat_list = NomenclaturesController::getCatsList();
                     <td>
                         <input type="text" name="name"
                             placeholder="Name"
-                            {{ (isset($item['name']) && !Input::old('name')) ? ' value="'.$item['name'].'"' : ''}}
-                            {{ (Input::old('name')) ? ' value="'.Input::old('name').'"' : ''}}
+                            {{ (isset($item['name']) && !Input::old('name')) ? ' value="'.e($item['name']).'"' : ''}}
+                            {{ (Input::old('name')) ? ' value="'.e(Input::old('name')).'"' : ''}}
                         >
                         <br>
                         @if($errors->has('name'))
@@ -101,8 +101,8 @@ $cat_list = NomenclaturesController::getCatsList();
                                 <td style="text-align: left;">
                                     <p>Quantity</p>
                                     <input type="number" name="quantity" step="any" id="qty"
-                                        {{ (isset($item['quantity']) && !Input::old('quantity')) ? ' value="'.$item['quantity'].'"' : ''}}
-                                        {{ (Input::old('quantity')) ? ' value="'.Input::old('quantity').'"' : ''}}
+                                        {{ (isset($item['quantity']) && !Input::old('quantity')) ? ' value="'.e($item['quantity']).'"' : ''}}
+                                        {{ (Input::old('quantity')) ? ' value="'.e(Input::old('quantity')).'"' : ''}}
                                     >
                                     <br>
                                     @if($errors->has('quantity'))
@@ -112,8 +112,8 @@ $cat_list = NomenclaturesController::getCatsList();
                                 <td style="padding-left: 10px;text-align: left;">
                                     <p>Price (&euro;)</p>
                                     <input type="number" name="price" step="any" id="price"
-                                        {{ (isset($item['price']) && !Input::old('price')) ? ' value="'.$item['price'].'"' : ''}}
-                                        {{ (Input::old('price')) ? ' value="'.Input::old('price').'"' : ''}}
+                                        {{ (isset($item['price']) && !Input::old('price')) ? ' value="'.e($item['price']).'"' : ''}}
+                                        {{ (Input::old('price')) ? ' value="'.e(Input::old('price')).'"' : ''}}
                                     >
                                     <br>
                                     @if($errors->has('price'))

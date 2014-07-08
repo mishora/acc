@@ -21,7 +21,7 @@ class OverviewController extends BaseController
         }
 
         $items = Item::whereRaw('access >='. Auth::user()->access .
-                    $this::set_where())->get();
+                    $this::set_where())->orderBy('pay_date')->get();
 
         foreach ($items as $item) {
             if ($item['type'] ==  0) {
