@@ -20,7 +20,7 @@ class Item extends Eloquent
             $this->pay_check = $this->pay_check ? false : true;
         }
 
-        Session::put('insertedId', $this->id);
+        Session::flash ('insertedId', $this->id, 1);
 
         if (!$this->save()) {
         	return -1;

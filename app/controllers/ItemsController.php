@@ -54,7 +54,7 @@ class ItemsController extends BaseController
             $item->access = $cat['access'];
             $item->type = $cat['type'];
             if ($item->save()) {
-                Session::put('insertedId', $item->id);
+                Session::flash('insertedId', $item->id);
                 return Redirect::route($redirect_path)
                         ->with('msg-success', 'Data saved successfully!');
             }

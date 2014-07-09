@@ -2,7 +2,7 @@
 class OverviewController extends BaseController
 {
     // Overview - Get Overview (GET)
-    public function getOverview($nav = null)
+    public function getOverview()
     {
         $offices_names = array();
         $cats_names = array();

@@ -219,7 +219,4 @@
             </td>
         </tr>
     </table>
-    <script type="text/javascript">
-        location.href = window.location.href + '#{{ Session::get('insertedId') }}';
-    </script>
 @stop

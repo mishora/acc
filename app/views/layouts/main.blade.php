@@ -49,7 +49,17 @@
         </div>
         <div class="footer"></div>
     </div>
-
+    @if($page == 'overview' && Session::has('insertedId'))
+    <script type="text/javascript">
+        $('#alertify-ok').click(function(){
+            window.location.href = window.location.href + '#{{ Session::get("insertedId") }}';
+            var position = $('#{{ Session::get("insertedId") }}').position();
+            if (position && position.top - 90 > 0) {
+                window.scrollTo(0, position.top - 90);
+            }
+        });
+    </script>
+    @endif
 </body>
 </html>
 
