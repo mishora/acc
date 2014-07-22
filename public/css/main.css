@@ -281,10 +281,10 @@ h1{
 }
 
 .topmenu li ul {
-    display:none;/*hide the dropdown*/
-    position:absolute;/*position it absolutely..*/
-    left:0px;/*...align the left edge with the left edge of the parent li...*/
-    top:18px;/*...and 32px down from the top - 30px height + 2px for the border*/
+    display:none;
+    position:absolute;
+    left:0px;
+    top:17px;
     font-size: 12px;
 }
 
