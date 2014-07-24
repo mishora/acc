@@ -3,7 +3,6 @@ class ItemsController extends BaseController
 {
     public function getAdd()
     {
-
         return View::make('add.add', array(
             'title' => 'DANS ENERGY - Add New Item',
             'page' => 'add'
@@ -20,10 +19,11 @@ class ItemsController extends BaseController
         $rules = array(
             'office' => 'required|numeric|min:1',
             'cat' => 'required|numeric|min:0',
+            'partner' => 'required|numeric|min:0',
             'name' => 'required',
-            'quantity' => 'required|numeric|min:0.00001',
-            'price' => 'required|numeric|min:0.00001',
-            'amount' => 'required|numeric|min:0.00001',
+            'quantity' => 'required|numeric|min:0.000000001',
+            'price' => 'required|numeric|min:0.000000001',
+            'amount' => 'required|numeric|min:0.000000001',
             'issue_date' => 'required',
             'pay_date' => 'required',
         );
@@ -41,6 +41,7 @@ class ItemsController extends BaseController
 
             $item->office = Input::get('office');
             $item->cat = Input::get('cat');
+            $item->partner = Input::get('partner');
             $item->name = Input::get('name');
             $item->desc = Input::get('desc');
             $item->quantity = Input::get('quantity');

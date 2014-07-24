@@ -10,6 +10,7 @@
             <a href="{{ URL::route('nomenclatures-offices') }}">Nomenclatures</a>
             <ul>
                 <li><a href="{{ URL::route('nomenclatures-offices') }}">Offices</a></li>
+                <li><a href="{{ URL::route('nomenclatures-partners') }}">Partners</a></li>
                 <li><a href="{{ URL::route('nomenclatures-categories') }}">Categories</a></li>
                 @if(Config::get('maps.access.'.Auth::user()->access) == 'Administrator' )
                     <li><a href="{{ URL::route('nomenclatures-operators') }}">Operators</a></li>

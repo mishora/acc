@@ -68,6 +68,23 @@ Route::group(array('before' => 'auth'), function() {
         'uses' => 'NomenclaturesController@getOfficesDelete'
     ));
 
+    /***   ---Partners---   ***/
+    // Nomenclatures - Partners (GET)
+    Route::get('/nomenclatures/partners', array(
+        'as' => 'nomenclatures-partners',
+        'uses' => 'NomenclaturesController@getPartners'
+    ));
+    // Nomenclatures - Edit Partner {GET}
+    Route::get('nomenclatures/partners/edit/{id}', array(
+        'as' => 'nomenclatures-partners-edit',
+        'uses' => 'NomenclaturesController@getPartnersEdit'
+        ));
+    // Nomenclatures - Delete Partner {GET}
+    Route::get('nomenclatures/partners/delete/{id}', array(
+        'as' => 'nomenclatures-partners-delete',
+        'uses' => 'NomenclaturesController@getPartnersDelete'
+    ));
+
     /*------------------------------------------------------------------------*/
     /***   ---Categories---   ***/
     // Nomenclatures - Categories (GET)
@@ -148,6 +165,16 @@ Route::group(array('before' => 'auth'), function() {
         Route::post('/nomenclatures/offices/edit/{id}', array(
             'as' => 'nomenclatures-offices-edit-post',
             'uses' => 'NomenclaturesController@postOfficesEdit'
+        ));
+        // Nomenclatures - Partners (POST)
+        Route::post('/nomenclatures/partners', array(
+            'as' => 'nomenclatures-partners-post',
+            'uses' => 'NomenclaturesController@postPartners'
+        ));
+        // Nomenclatures - Partners Edit (POST)
+        Route::post('/nomenclatures/partners/edit/{id}', array(
+            'as' => 'nomenclatures-partners-edit-post',
+            'uses' => 'NomenclaturesController@postPartnersEdit'
         ));
         // Nomenclatures - Categories (POST)
         Route::post('/nomenclatures/categories', array(

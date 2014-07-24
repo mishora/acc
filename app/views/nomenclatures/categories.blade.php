@@ -45,7 +45,6 @@
                         @if(Input::old('type') > -1)
                             <script type="text/javascript">
                                 set_selected_option('type', '<?php echo Input::old('type'); ?>');
-                                console.log('<?php echo Input::old('type'); ?>');
                             </script>
                         @endif
                     </td>

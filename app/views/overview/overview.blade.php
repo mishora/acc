@@ -4,7 +4,7 @@
     <h1 class="noms">Overview And Reports</h1>
     <table class="nomenclatures-table-list overview-table">
         <tr>
-            <td colspan="15">
+            <td colspan="16">
                 <form action="{{ URL::action('overview-filters') }}" method="post">
                     <label for="from">From</label>
                     <input  type="text" id="from" name="from_date"
@@ -22,6 +22,16 @@
                                 {{ ($office['id'] == Session::get('offices_filter')) ? 'selected="selected"' : ''}}
                             >
                                 {{ $office['name'] }}
+                            </option>
+                        @endforeach
+                    </select>
+                    <select id="dd" name="partners_filter" class="select_autosend">
+                        <option value="-1">-- All Partners --</option>
+                        @foreach($partners as $partner)
+                            <option value="{{ $partner['id'] }}"
+                                {{ ($partner['id'] == Session::get('partners_filter')) ? 'selected="selected"' : ''}}
+                            >
+                                {{ $partner['short_name'] }}
                             </option>
                         @endforeach
                     </select>
@@ -50,7 +60,7 @@
             </td>
         </tr>
         <tr class="empty_row">
-            <td class="empty_row_td" colspan="15"></td>
+            <td class="empty_row_td" colspan="16"></td>
         </tr>
         <tr>
             <?php
@@ -71,6 +81,9 @@
             </th>
             <th title="Click to order by Category">
                 <a href="{{ URL::to('order', array('by' => 'cat')) }}" {{ $o == 'cat' ? $italic : ''}}>Category</a>
+            </th>
+            <th title="Click to order by Partner">
+                <a href="{{ URL::to('order', array('by' => 'partner')) }}" {{ $o == 'partner' ? $italic : ''}}>Partner</a>
             </th>
             <th title="Click to order by Name">
                 <a href="{{ URL::to('order', array('by' => 'name')) }}" {{ $o == 'name' ? $italic : ''}}>Name</a>
@@ -120,6 +133,11 @@
             <td title="{{ $item['desc'] }}">{{ $offices_names[$item['office']] }}</td>
             <td title="{{ $item['desc'] }}">{{ Config::get('maps.type.'.$item['type']) }}</td>
             <td title="{{ $item['desc'] }}">{{ $cats_names[$item['cat']] }}</td>
+            <td title="{{ $item['desc'] }}">
+                @if(isset($item['partner']) and (int)$item['partner'] > 0 )
+                    {{ $partners_names[$item['partner']] }}
+                @endif
+            </td>
             <td title="{{ $item['desc'] }}">{{ $item['name'] }}</td>
             <td title="Quantity: {{ number_format($item['quantity'], 3, '.', ' ') }}" style="text-align: right;">
                 {{ number_format($item['quantity'], 2, '.', ' ') }}
@@ -195,10 +213,10 @@
         </tr>
         @endforeach
         <tr class="empty_row">
-            <td class="empty_row_td" colspan="15"></td>
+            <td class="empty_row_td" colspan="16"></td>
         </tr>
         <tr id="result">
-            <td colspan="15" style="text-align: right;padding: 0px">
+            <td colspan="16" style="text-align: right;padding: 0px">
                 <table class="result" border="0px" cellspacing="0px" cellpadding="15px">
                     <tr class="incomes">
                         <td style="color: #003300;width: 100px;border-right:1px solid #ccc;">Incomes: </td>

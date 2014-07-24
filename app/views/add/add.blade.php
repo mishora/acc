@@ -1,7 +1,8 @@
 @extends('layouts.main')
 <?php
-$offc_list = NomenclaturesController::getOfficesList();
-$cat_list = NomenclaturesController::getCatsList();
+$offc_list = Office::all();
+$cat_list = Cat::all();
+$partner_list = Partner::all();
 ?>
 @section('content')
     @if(isset($item))
@@ -77,6 +78,30 @@ $cat_list = NomenclaturesController::getCatsList();
                             <script type="text/javascript">
                                 set_selected_option('cat', '<?php echo Input::old('cat'); ?>');
                                 console.log('<?php echo Input::old('cat'); ?>');
+                            </script>
+                        @endif
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="partner" onchange="if(this.value >= 0) {this.style.color = '#333';} else {this.style.color = '#aaa';}">
+                            <option value="-1">-- Select Partner --</option>
+                            @foreach($partner_list as $partner)
+                                <option value="{{ $partner['id'] }}">{{ $partner['short_name'] }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        @if($errors->has('partner'))
+                            <span class="errors">{{ $errors->first('partner') }}</span>
+                        @endif
+                        @if(isset($item))
+                            <script type="text/javascript">
+                                set_selected_option('partner', '<?php echo $item['partner']; ?>');
+                            </script>
+                        @endif
+                        @if(Input::old('partner') > -1)
+                            <script type="text/javascript">
+                                set_selected_option('partner', '<?php echo Input::old('partner'); ?>');
                             </script>
                         @endif
                     </td>
@@ -245,9 +270,11 @@ $cat_list = NomenclaturesController::getCatsList();
                     <td class="td-align-right" style="padding-top: 20px;">
                         @if(isset($item))
                             <input type="hidden" name="id" value="{{ $item['id'] }}">
+                            <input type="submit" value="Update" name="save">
+                        @else
+                            <input type="submit" value="Save" name="save">
                         @endif
                         {{ Form::token() }}
-                        <input type="submit" value="Save" name="save">
                     </td>
                 </tr>
             </table>

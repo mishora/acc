@@ -2,9 +2,9 @@
 class NomenclaturesController extends BaseController
 {
     /**
-     ******************************   Officess   *******************************
+     ******************************   Offices   ********************************
      */
-    // Nomenclatures - Officess (GET)
+    // Nomenclatures - Offices (GET)
     public function getOffices()
     {
         $offices =  Office::all()->toArray();
@@ -14,7 +14,7 @@ class NomenclaturesController extends BaseController
             'offices' => $offices
         ));
     }
-    // Nomenclatures - Officess Edit (GET)
+    // Nomenclatures - Offices Edit (GET)
     public function getOfficesEdit($id)
     {
         $office = Office::where('id', $id)->take(1);
@@ -24,7 +24,7 @@ class NomenclaturesController extends BaseController
             'office' => $office->first()
         ));
     }
-    // Nomenclatures - Officess Delete (GET)
+    // Nomenclatures - Offices Delete (GET)
     public function getOfficesDelete($id)
     {
         $office = Office::find($id);
@@ -90,6 +90,126 @@ class NomenclaturesController extends BaseController
     public static function getOfficesList()
     {
         return Office::all();
+    }
+
+    /**
+     ******************************   Partners   *******************************
+     */
+    // Nomenclatures - Partners (GET)
+    public function getPartners()
+    {
+        $partners =  Partner::all()->toArray();
+        return View::make('nomenclatures.partners', array(
+            'title' => 'DANS ENERGY - Partners',
+            'page' => 'nomenclatures',
+            'partners' => $partners
+        ));
+    }
+
+    // Nomenclatures - Partners Edit (GET)
+    public function getPartnersEdit($id)
+    {
+        $partner = Partner::where('id', $id)->take(1);
+        return View::make('nomenclatures.partners', array(
+            'title' => 'DANS ENERGY - Edit Partners',
+            'page' => 'nomenclatures',
+            'partner' => $partner->first()
+        ));
+    }
+
+    // Nomenclatures - Partners Delete (GET)
+    public function getPartnersDelete()
+    {
+
+    }
+
+    // Nomenclatures - Partners (POST)
+    public function postPartners()
+    {
+        $messages = array(
+            'min' => 'The :attribute field is required.',
+        );
+
+        $validator = Validator::make(Input::all(), array(
+            'short_name' => 'required|unique:partners|max:32',
+            'full_name' => 'unique:partners|max:255',
+            'country' => 'numeric|min:1',
+            'mail' => 'email'
+        ), $messages);
+
+        if ($validator->passes()) {
+            $partner = new Partner();
+            $partner->short_name = Input::get('short_name');
+            $partner->full_name = Input::get('full_name');
+            $partner->mol = Input::get('mol');
+            $partner->country = Input::get('country');
+            $partner->eic = Input::get('eic');
+            $partner->vat = Input::get('vat');
+            $partner->bank = Input::get('bank');
+            $partner->bic = Input::get('bic');
+            $partner->iban = Input::get('iban');
+            $partner->address = Input::get('address');
+            $partner->mail = Input::get('mail');
+            $partner->phone = Input::get('phone');
+            if ($partner->save()) {
+                return Redirect::route('nomenclatures-partners')
+                    ->with('msg-success', 'Data saved successfully!');
+            }
+        } else {
+            return Redirect::route('nomenclatures-partners')
+                        ->withErrors($validator)->withInput();
+        }
+
+        return Redirect::route('nomenclatures-partners')
+                    ->with('msg-fail', 'Unable to save data!');
+    }
+
+    // Nomenclatures - Edit Partners (POST)
+    public function postPartnersEdit($id)
+    {
+        $messages = array(
+            'min' => 'The :attribute field is required.',
+        );
+
+        $validator = Validator::make(Input::all(), array(
+            'short_name' => 'required|max:32',
+            'full_name' => 'max:255',
+            'country' => 'numeric|min:1',
+            'mail' => 'email'
+        ), $messages);
+
+        if ($validator->fails()) {
+            return Redirect::route('nomenclatures-partners-edit',
+                array('id' => $id))->withErrors($validator)->withInput();
+        } else {
+            $partner = Partner::where('id', $id)->take(1)->first();
+            $partner->short_name = Input::get('short_name');
+            $partner->full_name = Input::get('full_name');
+            $partner->mol = Input::get('mol');
+            $partner->country = Input::get('country');
+            $partner->eic = Input::get('eic');
+            $partner->vat = Input::get('vat');
+            $partner->bank = Input::get('bank');
+            $partner->bic = Input::get('bic');
+            $partner->iban = Input::get('iban');
+            $partner->address = Input::get('address');
+            $partner->mail = Input::get('mail');
+            $partner->phone = Input::get('phone');
+
+            if ($partner->save()) {
+                return Redirect::route('nomenclatures-partners')
+                            ->with('msg-success', 'Data updated successfully!');
+            }
+        }
+
+        return Redirect::route('nomenclatures-partners')
+                    ->with('msg-fail', 'Unable to update data!');
+    }
+
+    // Nomenclatures - Get list of partners
+    public static function getPartnersList()
+    {
+        return Partner::all();
     }
 
     /**

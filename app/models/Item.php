@@ -5,9 +5,23 @@ class Item extends Eloquent
      * @var array
      */
     protected $fillable = array(
-        'office', 'type', 'cat', 'name', 'desc', 'quantity', 'price',
-        'amount', 'issue_date', 'issue_check', 'pay_date', 'reason',
-        'pay_check', 'inexact','created_at', 'updated_at'
+        'office',
+        'type',
+        'cat',
+        'partner',
+        'name',
+        'desc',
+        'quantity',
+        'price',
+        'amount',
+        'issue_date',
+        'issue_check',
+        'pay_date',
+        'reason',
+        'pay_check',
+        'inexact',
+        'created_at',
+        'updated_at'
     );
 
     public function mark($type)
@@ -18,6 +32,9 @@ class Item extends Eloquent
 
         if ($type == 'pay_check') {
             $this->pay_check = $this->pay_check ? false : true;
+            if ($this->pay_check == true) {
+                $this->inexact = false;
+            }
         }
 
         Session::flash ('insertedId', $this->id, 1);

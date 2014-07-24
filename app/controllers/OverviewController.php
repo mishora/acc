@@ -5,9 +5,11 @@ class OverviewController extends BaseController
     public function getOverview()
     {
         $offices_names = array();
+        $partners_names = array();
         $cats_names = array();
 
         $offices = Office::all()->toArray();
+        $partners = Partner::all()->toArray();
         $cats = Cat::all()->toArray();
         $incomes = 0;
         $expenses = 0;
@@ -15,6 +17,10 @@ class OverviewController extends BaseController
 
         foreach ($offices as $val) {
             $offices_names[$val['id']] = $val['name'];
+        }
+
+        foreach ($partners as $val) {
+            $partners_names[$val['id']] = $val['short_name'];
         }
 
         foreach ($cats as $cat) {
@@ -47,10 +53,12 @@ class OverviewController extends BaseController
             'page' => 'overview',
             'items' => $items,
             'offices_names' => $offices_names,
+            'partners_names' => $partners_names,
             'cats_names' => $cats_names,
             'incomes' => $incomes,
             'expenses' => $expenses,
             'offices' => $offices,
+            'partners' => $partners,
             'cats' => $cats,
         ));
     }
@@ -72,6 +80,7 @@ class OverviewController extends BaseController
     public function postOverviewFilters()
     {
         $offices_filter = Input::get('offices_filter');
+        $partners_filter = Input::get('partners_filter');
         $type_filter = Input::get('type_filter');
         $cats_filter = Input::get('cats_filter');
         $from_date = strtotime(Input::get('from_date'));
@@ -87,6 +96,7 @@ class OverviewController extends BaseController
         Session::put('offices_filter', $offices_filter);
         Session::put('type_filter', $type_filter);
         Session::put('cats_filter', $cats_filter);
+        Session::put('partners_filter', $partners_filter);
         Session::put('from_date', $from_date);
         Session::put('to_date', $to_date);
 
@@ -99,6 +109,11 @@ class OverviewController extends BaseController
         if (Session::has('offices_filter')) {
             if (Session::get('offices_filter') > -1) {
                 $ret .= ' AND office = '.Session::get('offices_filter');
+            }
+        }
+        if (Session::has('partners_filter')) {
+            if (Session::get('partners_filter') > -1) {
+                $ret .= ' AND partner = '.Session::get('partners_filter');
             }
         }
         if (Session::has('type_filter')) {
